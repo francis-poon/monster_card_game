@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://duoj0qqmhickr"]
+
+[ext_resource type="Script" uid="uid://cbnjkjd8kgiyv" path="res://card_hand.gd" id="1_swcsj"]
+
+[node name="CardHand" type="Control" node_paths=PackedStringArray("card_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_swcsj")
+card_container = NodePath("CardContainer")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.103743516, 0.10374353, 0.103743516, 1)
+
+[node name="CardContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
