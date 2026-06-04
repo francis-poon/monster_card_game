@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bltlu7esxp5up"]
+
+[ext_resource type="Script" uid="uid://c2b0mcwaerlr3" path="res://tiled_progress_bar.gd" id="1_8g4ty"]
+
+[node name="TiledProgressBar" type="HBoxContainer"]
+texture_repeat = 2
+script = ExtResource("1_8g4ty")

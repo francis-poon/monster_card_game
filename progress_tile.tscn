@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://ms3qc20ddjnh"]
+
+[ext_resource type="Script" uid="uid://chttte534iwwj" path="res://progress_tile.gd" id="1_53afp"]
+
+[node name="ProgressTile" type="MarginContainer" node_paths=PackedStringArray("_under_texture", "_fill_texture")]
+script = ExtResource("1_53afp")
+_under_texture = NodePath("UnderTexture")
+_fill_texture = NodePath("FillTexture")
+
+[node name="UnderTexture" type="TextureRect" parent="."]
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="FillTexture" type="TextureRect" parent="."]
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
