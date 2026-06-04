@@ -1,0 +1,99 @@
+[gd_scene load_steps=11 format=3 uid="uid://bruta8seslbpi"]
+
+[ext_resource type="Script" uid="uid://bm2x02tolfp5x" path="res://opponent_board.gd" id="1_rlan4"]
+[ext_resource type="PackedScene" uid="uid://d0172sbylhkd5" path="res://card.tscn" id="2_e4jc1"]
+[ext_resource type="PackedScene" uid="uid://bs0gvplcdhv4x" path="res://play_field.tscn" id="3_odh8u"]
+[ext_resource type="PackedScene" uid="uid://duoj0qqmhickr" path="res://card_hand.tscn" id="4_qafid"]
+[ext_resource type="Script" uid="uid://c2b0mcwaerlr3" path="res://tiled_progress_bar.gd" id="5_odh8u"]
+[ext_resource type="Texture2D" uid="uid://ujrf0qcxcvag" path="res://assets/ui_icons.png" id="6_qafid"]
+[ext_resource type="Texture2D" uid="uid://c3kgkf1ubvrcl" path="res://assets/monster_sprites.png" id="7_0q0y0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nq1hc"]
+atlas = ExtResource("6_qafid")
+region = Rect2(12, 0, 6, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmml3"]
+atlas = ExtResource("6_qafid")
+region = Rect2(6, 0, 6, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdkip"]
+atlas = ExtResource("7_0q0y0")
+region = Rect2(20, 0, 18, 19)
+
+[node name="OpponentBoard" type="Control" node_paths=PackedStringArray("card_hand", "play_field", "health_bar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_rlan4")
+card_hand = NodePath("CardHand")
+card_scene = ExtResource("2_e4jc1")
+play_field = NodePath("PlayField")
+health_bar = NodePath("HealthBar")
+
+[node name="CardHand" parent="." instance=ExtResource("4_qafid")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+size_flags_vertical = 3
+
+[node name="PlayField" parent="." node_paths=PackedStringArray("card_target_location") instance=ExtResource("3_odh8u")]
+layout_mode = 1
+size_flags_vertical = 3
+card_target_location = NodePath("CardTargetLocation")
+
+[node name="CardTargetLocation" type="Control" parent="PlayField"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 174.0
+offset_top = -88.0
+offset_right = 174.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthBar" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -259.0
+offset_top = -252.0
+offset_right = -21.0
+offset_bottom = -198.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = -8
+script = ExtResource("5_odh8u")
+under_texture = SubResource("AtlasTexture_nq1hc")
+fill_texture = SubResource("AtlasTexture_xmml3")
+value = 3
+max_value = 5
+metadata/_custom_type_script = "uid://c2b0mcwaerlr3"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -245.0
+offset_top = -432.0
+offset_right = -51.736816
+offset_bottom = -262.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = SubResource("AtlasTexture_wdkip")
+expand_mode = 3
+stretch_mode = 5

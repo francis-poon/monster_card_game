@@ -1,15 +1,30 @@
-[gd_scene load_steps=7 format=3 uid="uid://bh35pb1sbmnli"]
+[gd_scene load_steps=13 format=3 uid="uid://bh35pb1sbmnli"]
 
 [ext_resource type="Script" uid="uid://br8c8cft67ybg" path="res://player_board.gd" id="1_0wpmg"]
 [ext_resource type="PackedScene" uid="uid://bs0gvplcdhv4x" path="res://play_field.tscn" id="1_ple8l"]
 [ext_resource type="PackedScene" uid="uid://duoj0qqmhickr" path="res://card_hand.tscn" id="2_0wpmg"]
 [ext_resource type="PackedScene" uid="uid://d0172sbylhkd5" path="res://card.tscn" id="2_n4xgw"]
 [ext_resource type="Theme" uid="uid://buvopmxxup0hl" path="res://themes/card_text.tres" id="5_158oa"]
+[ext_resource type="Texture2D" uid="uid://ujrf0qcxcvag" path="res://assets/ui_icons.png" id="6_fi8n1"]
+[ext_resource type="Script" uid="uid://c2b0mcwaerlr3" path="res://tiled_progress_bar.gd" id="6_t6qys"]
+[ext_resource type="Texture2D" uid="uid://c3kgkf1ubvrcl" path="res://assets/monster_sprites.png" id="8_lagni"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fi8n1"]
 bg_color = Color(0, 0, 0, 1)
 
-[node name="PlayerBoard" type="Control" node_paths=PackedStringArray("card_hand")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lagni"]
+atlas = ExtResource("6_fi8n1")
+region = Rect2(12, 0, 6, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfgix"]
+atlas = ExtResource("6_fi8n1")
+region = Rect2(0, 0, 6, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0478"]
+atlas = ExtResource("8_lagni")
+region = Rect2(0, 0, 20, 21)
+
+[node name="PlayerBoard" type="Control" node_paths=PackedStringArray("card_hand", "play_field", "health_bar", "play_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,10 +33,13 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_0wpmg")
-card_hand = NodePath("HBoxContainer/VBoxContainer/CardHand")
+card_hand = NodePath("VBoxContainer/MarginContainer/CardHand")
 card_scene = ExtResource("2_n4xgw")
+play_field = NodePath("VBoxContainer/PlayField")
+health_bar = NodePath("HealthBar")
+play_button = NodePath("VBoxContainer/MarginContainer/EndTurnButton")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,25 +47,64 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-
-[node name="PlayField" parent="HBoxContainer/VBoxContainer" instance=ExtResource("1_ple8l")]
+[node name="PlayField" parent="VBoxContainer" node_paths=PackedStringArray("card_target_location") instance=ExtResource("1_ple8l")]
 layout_mode = 2
 size_flags_vertical = 3
+card_target_location = NodePath("CardTargetLocation")
 
-[node name="CardHand" parent="HBoxContainer/VBoxContainer" instance=ExtResource("2_0wpmg")]
+[node name="CardTargetLocation" type="Control" parent="VBoxContainer/PlayField"]
+anchors_preset = 0
+offset_left = 290.0
+offset_top = 236.0
+offset_right = 330.0
+offset_bottom = 276.0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 
-[node name="DrawCardButton" type="Button" parent="HBoxContainer"]
+[node name="CardHand" parent="VBoxContainer/MarginContainer" instance=ExtResource("2_0wpmg")]
+layout_mode = 2
+
+[node name="EndTurnButton" type="Button" parent="VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(120, 60)
 layout_mode = 2
+size_flags_horizontal = 8
 size_flags_vertical = 4
 theme = ExtResource("5_158oa")
 theme_override_styles/normal = SubResource("StyleBoxFlat_fi8n1")
-text = "DRAW"
+text = "END TURN"
 
-[connection signal="pressed" from="HBoxContainer/DrawCardButton" to="." method="_on_draw_card_button_pressed"]
+[node name="HealthBar" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = -252.0
+offset_right = 256.0
+offset_bottom = -198.0
+grow_vertical = 0
+theme_override_constants/separation = -8
+script = ExtResource("6_t6qys")
+under_texture = SubResource("AtlasTexture_lagni")
+fill_texture = SubResource("AtlasTexture_kfgix")
+value = 5
+max_value = 5
+metadata/_custom_type_script = "uid://c2b0mcwaerlr3"
+
+[node name="MonsterSprite" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 45.0
+offset_top = -450.0
+offset_right = 225.0
+offset_bottom = -261.0
+grow_vertical = 0
+texture = SubResource("AtlasTexture_g0478")
+expand_mode = 3
+stretch_mode = 5
+
+[connection signal="pressed" from="VBoxContainer/MarginContainer/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
