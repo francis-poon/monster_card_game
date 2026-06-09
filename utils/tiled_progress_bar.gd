@@ -3,7 +3,7 @@
 class_name TiledProgressBar
 extends HBoxContainer
 
-var _progress_tile_scene: PackedScene = preload("res://progress_tile.tscn")
+var _progress_tile_scene: PackedScene = preload("res://utils/progress_tile.tscn")
 
 @export var under_texture: Texture2D:
 	set(p_value):
@@ -40,8 +40,8 @@ var _progress_tile_scene: PackedScene = preload("res://progress_tile.tscn")
 				else:
 					new_tile.empty()
 		elif p_value < tiles.size():
-			var old_size = tiles.size()
 			for i in range(p_value, tiles.size()):
+				remove_child(tiles[i])
 				tiles[i].queue_free()
 			tiles.resize(p_value)
 

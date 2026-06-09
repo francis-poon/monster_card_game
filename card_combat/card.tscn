@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://d0172sbylhkd5"]
 
-[ext_resource type="Script" uid="uid://cdvbn3km86muu" path="res://draggable_card.gd" id="1_q5obu"]
+[ext_resource type="Script" uid="uid://cdvbn3km86muu" path="res://card_combat/draggable_card.gd" id="1_q5obu"]
 [ext_resource type="Texture2D" uid="uid://ujrf0qcxcvag" path="res://assets/ui_icons.png" id="2_q5obu"]
 [ext_resource type="Theme" uid="uid://buvopmxxup0hl" path="res://themes/card_text.tres" id="2_rjlel"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bs0gvplcdhv4x"]
 
-[ext_resource type="Script" uid="uid://jldoufsj42xm" path="res://play_field.gd" id="1_q5ud3"]
+[ext_resource type="Script" uid="uid://jldoufsj42xm" path="res://card_combat/play_field.gd" id="1_q5ud3"]
 
 [node name="PlayField" type="Control"]
 layout_mode = 3

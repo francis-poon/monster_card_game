@@ -1,11 +1,12 @@
 class_name CardGame
 extends Control
 
+signal battle_result(result: bool)
+
 @export var player_board: PlayerBoard
 @export var opponent_board: OpponentBoard
 @export var game_over_screen: Control
 @export var victory_screen: Control
-@export var play_button: Button
 
 var test_threshold_val: int = 4
 
@@ -15,7 +16,6 @@ func new_game():
 	player_board.start_game(3)
 	opponent_board.start_game(3)
 	opponent_board.play_round()
-	play_button.hide()
 
 func _end_turn():
 	opponent_board.end_turn()
@@ -35,17 +35,15 @@ func _new_turn():
 func _on_player_board_player_died() -> void:
 	player_board.end_game()
 	game_over_screen.show()
-	play_button.show()
+	await get_tree().create_timer(2).timeout
+	battle_result.emit(false)
 
 
 func _on_opponent_board_opponent_died() -> void:
 	player_board.end_game()
 	victory_screen.show()
-	play_button.show()
-
-
-func _on_play_button_pressed() -> void:
-	new_game()
+	await get_tree().create_timer(2).timeout
+	battle_result.emit(true)
 
 
 func _on_player_board_player_ended_turn() -> void:

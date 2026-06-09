@@ -1,5 +1,5 @@
 class_name DraggableCard
-extends Control
+extends MarginContainer
 
 signal card_dropped(card: DraggableCard)
 
@@ -43,7 +43,7 @@ func _update_card_face():
 		value_label.hide()
 
 func get_preview() -> Control:
-	var preview_card: Control = Control.new()
+	var preview_card: MarginContainer = MarginContainer.new()
 	preview_card.custom_minimum_size = self.size
 	preview_card.add_child(face.duplicate())
 	preview_card.add_child(value_label.duplicate())

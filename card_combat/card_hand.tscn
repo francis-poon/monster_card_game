@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://duoj0qqmhickr"]
 
-[ext_resource type="Script" uid="uid://cbnjkjd8kgiyv" path="res://card_hand.gd" id="1_swcsj"]
+[ext_resource type="Script" uid="uid://cbnjkjd8kgiyv" path="res://card_combat/card_hand.gd" id="1_swcsj"]
 [ext_resource type="Texture2D" uid="uid://b545iwfqnchdv" path="res://assets/card_field.png" id="2_swcsj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_swcsj"]
