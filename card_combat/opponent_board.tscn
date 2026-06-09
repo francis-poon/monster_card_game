@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://bruta8seslbpi"]
 
-[ext_resource type="Script" uid="uid://bm2x02tolfp5x" path="res://opponent_board.gd" id="1_rlan4"]
-[ext_resource type="PackedScene" uid="uid://d0172sbylhkd5" path="res://card.tscn" id="2_e4jc1"]
-[ext_resource type="PackedScene" uid="uid://bs0gvplcdhv4x" path="res://play_field.tscn" id="3_odh8u"]
-[ext_resource type="PackedScene" uid="uid://duoj0qqmhickr" path="res://card_hand.tscn" id="4_qafid"]
-[ext_resource type="Script" uid="uid://c2b0mcwaerlr3" path="res://tiled_progress_bar.gd" id="5_odh8u"]
+[ext_resource type="Script" uid="uid://bm2x02tolfp5x" path="res://card_combat/opponent_board.gd" id="1_rlan4"]
+[ext_resource type="PackedScene" uid="uid://d0172sbylhkd5" path="res://card_combat/card.tscn" id="2_e4jc1"]
+[ext_resource type="PackedScene" uid="uid://bs0gvplcdhv4x" path="res://card_combat/play_field.tscn" id="3_odh8u"]
+[ext_resource type="PackedScene" uid="uid://duoj0qqmhickr" path="res://card_combat/card_hand.tscn" id="4_qafid"]
+[ext_resource type="Script" uid="uid://c2b0mcwaerlr3" path="res://utils/tiled_progress_bar.gd" id="5_odh8u"]
 [ext_resource type="Texture2D" uid="uid://ujrf0qcxcvag" path="res://assets/ui_icons.png" id="6_qafid"]
 [ext_resource type="Texture2D" uid="uid://c3kgkf1ubvrcl" path="res://assets/monster_sprites.png" id="7_0q0y0"]
 

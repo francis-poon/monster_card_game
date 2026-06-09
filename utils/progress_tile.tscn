@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ms3qc20ddjnh"]
 
-[ext_resource type="Script" uid="uid://chttte534iwwj" path="res://progress_tile.gd" id="1_53afp"]
+[ext_resource type="Script" uid="uid://chttte534iwwj" path="res://utils/progress_tile.gd" id="1_53afp"]
 
 [node name="ProgressTile" type="MarginContainer" node_paths=PackedStringArray("_under_texture", "_fill_texture")]
 script = ExtResource("1_53afp")

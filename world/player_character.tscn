@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpgph0hje8yb7"]
+
+[ext_resource type="Script" uid="uid://3vcfurej4g1y" path="res://world/player_character.gd" id="1_2gpuf"]
+[ext_resource type="Texture2D" uid="uid://c3kgkf1ubvrcl" path="res://assets/monster_sprites.png" id="2_p4qmb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4qmb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmw4h"]
+atlas = ExtResource("2_p4qmb")
+region = Rect2(0, 0, 20, 21)
+
+[node name="PlayerCharacter" type="CharacterBody2D"]
+collision_mask = 2
+script = ExtResource("1_2gpuf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p4qmb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_mmw4h")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4.025, 4.025)

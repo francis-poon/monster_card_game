@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcyslt11yemyv"]
+
+[ext_resource type="Script" uid="uid://cgfjs6nw7f1bj" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://bihdp8501iowo" path="res://card_combat/card_game.tscn" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://5bti5i4rbhsp" path="res://world/overworld.tscn" id="2_h2yge"]
+[ext_resource type="Theme" uid="uid://buvopmxxup0hl" path="res://themes/card_text.tres" id="3_1bvp3"]
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("card_game", "overworld", "kill_count_label")]
+script = ExtResource("1_0xm2m")
+card_game = NodePath("CanvasLayer/CardGame")
+overworld = NodePath("Overworld")
+kill_count_label = NodePath("CanvasLayer/KillCountLabel")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CardGame" parent="CanvasLayer" instance=ExtResource("2_1bvp3")]
+
+[node name="KillCountLabel" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("3_1bvp3")
+text = "Monsters Killed: "
+
+[node name="Overworld" parent="." instance=ExtResource("2_h2yge")]
+
+[connection signal="battle_result" from="CanvasLayer/CardGame" to="." method="_on_card_game_battle_result"]
+[connection signal="start_battle" from="Overworld" to="." method="_on_overworld_start_battle"]

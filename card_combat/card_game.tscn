@@ -1,12 +1,12 @@
 [gd_scene load_steps=6 format=3 uid="uid://bihdp8501iowo"]
 
-[ext_resource type="Script" uid="uid://p6qt2wsmw7sa" path="res://card_game.gd" id="1_1m8ml"]
-[ext_resource type="PackedScene" uid="uid://bh35pb1sbmnli" path="res://player_board.tscn" id="2_2jybh"]
-[ext_resource type="PackedScene" uid="uid://bruta8seslbpi" path="res://opponent_board.tscn" id="2_p03o1"]
+[ext_resource type="Script" uid="uid://p6qt2wsmw7sa" path="res://card_combat/card_game.gd" id="1_1m8ml"]
+[ext_resource type="PackedScene" uid="uid://bh35pb1sbmnli" path="res://card_combat/player_board.tscn" id="2_2jybh"]
+[ext_resource type="PackedScene" uid="uid://bruta8seslbpi" path="res://card_combat/opponent_board.tscn" id="2_p03o1"]
 [ext_resource type="Texture2D" uid="uid://cd7jwa0ntrcm3" path="res://assets/forest_background_01.png" id="2_vimfd"]
 [ext_resource type="FontFile" uid="uid://bo5patjmbqk08" path="res://assets/Pixeloid_Font_0_5/OpenType (.otf)/PixeloidSans.otf" id="3_csu0h"]
 
-[node name="CardGame" type="Control" node_paths=PackedStringArray("player_board", "opponent_board", "game_over_screen", "victory_screen", "play_button")]
+[node name="CardGame" type="Control" node_paths=PackedStringArray("player_board", "opponent_board", "game_over_screen", "victory_screen")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,7 +18,6 @@ player_board = NodePath("PlayerBoard")
 opponent_board = NodePath("OpponentBoard")
 game_over_screen = NodePath("GameOverScreen")
 victory_screen = NodePath("VictoryScreen")
-play_button = NodePath("PlayButton")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -42,29 +41,6 @@ offset_bottom = 648.0
 grow_horizontal = 1
 grow_vertical = 1
 size_flags_vertical = 3
-
-[node name="PlayButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0.11764706, 0.1254902, 0.14509805, 1)
-theme_override_constants/outline_size = 27
-theme_override_fonts/font = ExtResource("3_csu0h")
-theme_override_font_sizes/font_size = 36
-text = "
-
-
-
-
-
-
-
-
-
-CLICK TO PLAY"
 
 [node name="GameOverScreen" type="Control" parent="."]
 visible = false
@@ -117,4 +93,3 @@ vertical_alignment = 1
 [connection signal="opponent_died" from="OpponentBoard" to="." method="_on_opponent_board_opponent_died"]
 [connection signal="player_died" from="PlayerBoard" to="." method="_on_player_board_player_died"]
 [connection signal="player_ended_turn" from="PlayerBoard" to="." method="_on_player_board_player_ended_turn"]
-[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
