@@ -1,0 +1,55 @@
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://cw5tc68q7kjfq"]
+
+[ext_resource type="Texture2D" uid="uid://ujrf0qcxcvag" path="res://assets/ui_icons.png" id="1_dpjbf"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ekwdc"]
+load_path = "res://.godot/imported/ui_icons.png-a2f6dc6d5a949abad87f91276698b409.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5ipa"]
+atlas = SubResource("CompressedTexture2D_ekwdc")
+region = Rect2(0, 22, 10, 4)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gkb8j"]
+texture = SubResource("AtlasTexture_u5ipa")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpjbf"]
+atlas = ExtResource("1_dpjbf")
+region = Rect2(10, 26, 10, 4)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s8pfl"]
+texture = SubResource("AtlasTexture_dpjbf")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t7ft"]
+atlas = ExtResource("1_dpjbf")
+region = Rect2(0, 26, 10, 4)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pm7bq"]
+texture = SubResource("AtlasTexture_6t7ft")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_006x4"]
+load_path = "res://.godot/imported/ui_icons.png-a2f6dc6d5a949abad87f91276698b409.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8q7g"]
+atlas = SubResource("CompressedTexture2D_006x4")
+region = Rect2(0, 30, 10, 4)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_62wfw"]
+texture = SubResource("AtlasTexture_d8q7g")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8xwyx"]
+load_path = "res://.godot/imported/ui_icons.png-a2f6dc6d5a949abad87f91276698b409.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hu5cb"]
+atlas = SubResource("CompressedTexture2D_8xwyx")
+region = Rect2(0, 22, 10, 4)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eqgws"]
+texture = SubResource("AtlasTexture_hu5cb")
+
+[resource]
+Button/styles/disabled = SubResource("StyleBoxTexture_gkb8j")
+Button/styles/focus = SubResource("StyleBoxTexture_s8pfl")
+Button/styles/hover = SubResource("StyleBoxTexture_pm7bq")
+Button/styles/hover_pressed = SubResource("StyleBoxTexture_62wfw")
+Button/styles/normal = SubResource("StyleBoxTexture_eqgws")
+Button/styles/pressed = SubResource("StyleBoxTexture_62wfw")

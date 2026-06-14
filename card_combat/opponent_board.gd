@@ -14,9 +14,10 @@ var health: int:
 	set(value):
 		health = value
 		health_bar.value = value
+var deck: PlayableDeck = PlayableDeck.new()
 
-
-func start_game(start_hand_size: int):
+func start_game(p_deck: PlayableDeck, start_hand_size: int):
+	deck = p_deck
 	health_bar.max_value = MAX_HEALTH
 	health = 5
 	card_hand.clear()
@@ -24,17 +25,21 @@ func start_game(start_hand_size: int):
 	draw_cards(start_hand_size)
 
 func start_turn():
-	play_field.clear()
 	draw_cards(1)
 	play_round()
 
-func end_turn():
+func reveal_turn():
 	play_field.field_card.reveal_card()
+
+func end_turn():
+	if get_card_value() != -1:
+		deck.discard(get_card_value())
+	play_field.clear()
 
 func draw_cards(draw_count: int):
 	for c in range(draw_count):
 		var new_card: DraggableCard = card_scene.instantiate()
-		new_card = new_card.construct(false, false)
+		new_card = new_card.construct(deck.draw(), false, false)
 		card_hand.add_card(new_card)
 
 func play_round():

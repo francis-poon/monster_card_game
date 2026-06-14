@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://br8c8cft67ybg" path="res://card_combat/player_board.gd" id="1_0wpmg"]
 [ext_resource type="PackedScene" uid="uid://bs0gvplcdhv4x" path="res://card_combat/play_field.tscn" id="1_ple8l"]
 [ext_resource type="PackedScene" uid="uid://duoj0qqmhickr" path="res://card_combat/card_hand.tscn" id="2_0wpmg"]
-[ext_resource type="PackedScene" uid="uid://d0172sbylhkd5" path="res://card_combat/card.tscn" id="2_n4xgw"]
+[ext_resource type="PackedScene" path="res://card_combat/draggable_card.tscn" id="2_fog5y"]
 [ext_resource type="Theme" uid="uid://buvopmxxup0hl" path="res://themes/card_text.tres" id="5_158oa"]
 [ext_resource type="Texture2D" uid="uid://ujrf0qcxcvag" path="res://assets/ui_icons.png" id="6_fi8n1"]
 [ext_resource type="Script" uid="uid://c2b0mcwaerlr3" path="res://utils/tiled_progress_bar.gd" id="6_t6qys"]
@@ -24,7 +24,7 @@ region = Rect2(0, 0, 6, 6)
 atlas = ExtResource("8_lagni")
 region = Rect2(0, 0, 20, 21)
 
-[node name="PlayerBoard" type="Control" node_paths=PackedStringArray("card_hand", "play_field", "health_bar", "play_button")]
+[node name="PlayerBoard" type="Control" node_paths=PackedStringArray("card_hand", "play_field", "health_bar", "end_turn_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,10 +34,10 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_0wpmg")
 card_hand = NodePath("VBoxContainer/MarginContainer/CardHand")
-card_scene = ExtResource("2_n4xgw")
+card_scene = ExtResource("2_fog5y")
 play_field = NodePath("VBoxContainer/PlayField")
 health_bar = NodePath("HealthBar")
-play_button = NodePath("VBoxContainer/MarginContainer/EndTurnButton")
+end_turn_button = NodePath("VBoxContainer/MarginContainer/EndTurnButton")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

@@ -11,13 +11,21 @@ config_version=5
 [application]
 
 config/name="card_game"
-run/main_scene="uid://bihdp8501iowo"
+run/main_scene="uid://dcyslt11yemyv"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Globals="*res://utils/globals.gd"
 
 [display]
 
 window/stretch/mode="viewport"
+
+[global_group]
+
+pausable=""
 
 [input]
 
