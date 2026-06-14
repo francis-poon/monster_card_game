@@ -4,8 +4,8 @@
 
 [resource]
 default_font = ExtResource("1_a4sf7")
-Label/colors/font_color = Color(1, 1, 1, 1)
-Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_color = Color(1, 0.99607843, 0.8392157, 1)
+Label/colors/font_outline_color = Color(0.11764706, 0.1254902, 0.14509805, 1)
 Label/constants/outline_size = 12
 Label/font_sizes/font_size = 32
 Label/fonts/font = ExtResource("1_a4sf7")

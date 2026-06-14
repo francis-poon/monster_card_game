@@ -19,13 +19,13 @@ var card_value: int:
 		card_value = value
 		value_label.text = str(value)
 
-func construct(p_is_revealed: bool = true, p_is_draggable: bool = true) -> DraggableCard:
+func construct(p_card_value: int = -1, p_is_revealed: bool = true, p_is_draggable: bool = true) -> DraggableCard:
+	card_value = p_card_value
 	is_revealed = p_is_revealed
 	is_draggable = p_is_draggable
 	return self
 
 func _ready() -> void:
-	card_value = randi_range(1, 10)
 	_update_card_face()
 
 func reveal_card():

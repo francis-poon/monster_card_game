@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://px84iwbjkhuq"]
+
+[ext_resource type="Script" uid="uid://inkyo2qpd7c4" path="res://card_combat/inventory_card.gd" id="1_kc1qb"]
+[ext_resource type="Texture2D" uid="uid://ujrf0qcxcvag" path="res://assets/ui_icons.png" id="2_xee8q"]
+[ext_resource type="Theme" uid="uid://c0i0rkrgw6vlw" path="res://themes/inventory_card_button.tres" id="3_thmmd"]
+[ext_resource type="Theme" uid="uid://buvopmxxup0hl" path="res://themes/card_text.tres" id="4_xee8q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvwgx"]
+atlas = ExtResource("2_xee8q")
+region = Rect2(13, 6, 13, 16)
+
+[node name="InventoryCard" type="Control" node_paths=PackedStringArray("value_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_thmmd")
+script = ExtResource("1_kc1qb")
+value_label = NodePath("ValueLabel")
+
+[node name="CardFaceTextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_mvwgx")
+stretch_mode = 5
+
+[node name="ValueLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_xee8q")
+text = "test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 0.8125
+
+[node name="Button" type="Button" parent="AspectRatioContainer"]
+layout_mode = 2
+focus_mode = 3
+theme = ExtResource("3_thmmd")
+
+[connection signal="pressed" from="AspectRatioContainer/Button" to="." method="_on_button_pressed"]

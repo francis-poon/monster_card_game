@@ -1,22 +1,22 @@
 [gd_scene load_steps=7 format=3 uid="uid://d0172sbylhkd5"]
 
-[ext_resource type="Script" uid="uid://cdvbn3km86muu" path="res://card_combat/draggable_card.gd" id="1_q5obu"]
-[ext_resource type="Texture2D" uid="uid://ujrf0qcxcvag" path="res://assets/ui_icons.png" id="2_q5obu"]
-[ext_resource type="Theme" uid="uid://buvopmxxup0hl" path="res://themes/card_text.tres" id="2_rjlel"]
+[ext_resource type="Script" uid="uid://cdvbn3km86muu" path="res://card_combat/draggable_card.gd" id="1_2cuhh"]
+[ext_resource type="Texture2D" uid="uid://ujrf0qcxcvag" path="res://assets/ui_icons.png" id="2_8ei37"]
+[ext_resource type="Theme" uid="uid://buvopmxxup0hl" path="res://themes/card_text.tres" id="3_obcm6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q5obu"]
-atlas = ExtResource("2_q5obu")
+atlas = ExtResource("2_8ei37")
 region = Rect2(13, 6, 13, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fpac0"]
-atlas = ExtResource("2_q5obu")
+atlas = ExtResource("2_8ei37")
 region = Rect2(0, 6, 13, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e484p"]
-atlas = ExtResource("2_q5obu")
+atlas = ExtResource("2_8ei37")
 region = Rect2(13.592027, 6.6290236, 12.407973, 15.370976)
 
-[node name="Card" type="MarginContainer" node_paths=PackedStringArray("face", "value_label")]
+[node name="DraggableCard" type="MarginContainer" node_paths=PackedStringArray("face", "value_label")]
 custom_minimum_size = Vector2(120, 0)
 anchors_preset = 8
 anchor_left = 0.5
@@ -31,7 +31,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_q5obu")
+script = ExtResource("1_2cuhh")
 face = NodePath("Face")
 front_texture = SubResource("AtlasTexture_q5obu")
 back_texture = SubResource("AtlasTexture_fpac0")
@@ -45,7 +45,7 @@ stretch_mode = 5
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
-theme = ExtResource("2_rjlel")
+theme = ExtResource("3_obcm6")
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -1,0 +1,29 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://c0i0rkrgw6vlw"]
+
+[ext_resource type="Texture2D" uid="uid://ujrf0qcxcvag" path="res://assets/ui_icons.png" id="1_vshx4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h1kg"]
+bg_color = Color(0.56, 0.08960001, 0.2307201, 0.39215687)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86aj8"]
+atlas = ExtResource("1_vshx4")
+region = Rect2(39, 6, 13, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ogmly"]
+texture = SubResource("AtlasTexture_86aj8")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vshx4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24cy8"]
+atlas = ExtResource("1_vshx4")
+region = Rect2(26, 6, 13, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_flwfc"]
+texture = SubResource("AtlasTexture_24cy8")
+
+[resource]
+Button/styles/disabled = SubResource("StyleBoxFlat_7h1kg")
+Button/styles/focus = SubResource("StyleBoxTexture_ogmly")
+Button/styles/hover = SubResource("StyleBoxTexture_ogmly")
+Button/styles/normal = SubResource("StyleBoxEmpty_vshx4")
+Button/styles/pressed = SubResource("StyleBoxTexture_flwfc")

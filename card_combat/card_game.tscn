@@ -1,23 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://bihdp8501iowo"]
+[gd_scene load_steps=7 format=3 uid="uid://bihdp8501iowo"]
 
 [ext_resource type="Script" uid="uid://p6qt2wsmw7sa" path="res://card_combat/card_game.gd" id="1_1m8ml"]
 [ext_resource type="PackedScene" uid="uid://bh35pb1sbmnli" path="res://card_combat/player_board.tscn" id="2_2jybh"]
+[ext_resource type="PackedScene" uid="uid://d0172sbylhkd5" path="res://card_combat/draggable_card.tscn" id="2_hxwv0"]
 [ext_resource type="PackedScene" uid="uid://bruta8seslbpi" path="res://card_combat/opponent_board.tscn" id="2_p03o1"]
 [ext_resource type="Texture2D" uid="uid://cd7jwa0ntrcm3" path="res://assets/forest_background_01.png" id="2_vimfd"]
 [ext_resource type="FontFile" uid="uid://bo5patjmbqk08" path="res://assets/Pixeloid_Font_0_5/OpenType (.otf)/PixeloidSans.otf" id="3_csu0h"]
 
-[node name="CardGame" type="Control" node_paths=PackedStringArray("player_board", "opponent_board", "game_over_screen", "victory_screen")]
+[node name="CardGame" type="Control" node_paths=PackedStringArray("player_board", "opponent_board", "game_over_screen", "game_over_label", "drops_display", "drops_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 3
 script = ExtResource("1_1m8ml")
 player_board = NodePath("PlayerBoard")
 opponent_board = NodePath("OpponentBoard")
 game_over_screen = NodePath("GameOverScreen")
-victory_screen = NodePath("VictoryScreen")
+game_over_label = NodePath("GameOverScreen/VBoxContainer/GameOverLabel")
+drops_display = NodePath("GameOverScreen/VBoxContainer/DropsDisplay")
+drops_container = NodePath("GameOverScreen/VBoxContainer/DropsDisplay/DropsContainer")
+draggable_card_scene = ExtResource("2_hxwv0")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -43,7 +48,6 @@ grow_vertical = 1
 size_flags_vertical = 3
 
 [node name="GameOverScreen" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,13 +56,26 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="GameOverScreen"]
+[node name="ColorRect" type="ColorRect" parent="GameOverScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0, 0, 0, 0.49803922)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="GameOverLabel" type="Label" parent="GameOverScreen/VBoxContainer"]
+layout_mode = 2
 theme_override_constants/outline_size = 40
 theme_override_fonts/font = ExtResource("3_csu0h")
 theme_override_font_sizes/font_size = 110
@@ -66,29 +83,22 @@ text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VictoryScreen" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+[node name="DropsDisplay" type="MarginContainer" parent="GameOverScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
 
-[node name="Label" type="Label" parent="VictoryScreen"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/outline_size = 40
+[node name="Label2" type="Label" parent="GameOverScreen/VBoxContainer/DropsDisplay"]
+layout_mode = 2
+theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("3_csu0h")
-theme_override_font_sizes/font_size = 110
-text = "VICTORY"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 54
+text = "DROPS:"
 vertical_alignment = 1
+
+[node name="DropsContainer" type="HBoxContainer" parent="GameOverScreen/VBoxContainer/DropsDisplay"]
+layout_mode = 2
+alignment = 1
 
 [connection signal="opponent_died" from="OpponentBoard" to="." method="_on_opponent_board_opponent_died"]
 [connection signal="player_died" from="PlayerBoard" to="." method="_on_player_board_player_died"]

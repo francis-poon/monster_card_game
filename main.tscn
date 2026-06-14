@@ -1,19 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcyslt11yemyv"]
+[gd_scene load_steps=7 format=3 uid="uid://dcyslt11yemyv"]
 
 [ext_resource type="Script" uid="uid://cgfjs6nw7f1bj" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bihdp8501iowo" path="res://card_combat/card_game.tscn" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://5bti5i4rbhsp" path="res://world/overworld.tscn" id="2_h2yge"]
 [ext_resource type="Theme" uid="uid://buvopmxxup0hl" path="res://themes/card_text.tres" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dh2plyj1m6s8a" path="res://card_combat/deck_editor.tscn" id="4_lquwl"]
+[ext_resource type="Theme" uid="uid://cw5tc68q7kjfq" path="res://themes/button.tres" id="5_7mycd"]
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("card_game", "overworld", "kill_count_label")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("card_game", "overworld", "kill_count_label", "deck_editor", "open_deck_editor_button")]
 script = ExtResource("1_0xm2m")
 card_game = NodePath("CanvasLayer/CardGame")
 overworld = NodePath("Overworld")
 kill_count_label = NodePath("CanvasLayer/KillCountLabel")
+deck_editor = NodePath("CanvasLayer/DeckEditor")
+open_deck_editor_button = NodePath("CanvasLayer/OpenDeckEditorButton")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="CardGame" parent="CanvasLayer" instance=ExtResource("2_1bvp3")]
+[node name="CardGame" parent="CanvasLayer" groups=["pausable"] instance=ExtResource("2_1bvp3")]
 
 [node name="KillCountLabel" type="Label" parent="CanvasLayer"]
 offset_right = 40.0
@@ -21,7 +25,22 @@ offset_bottom = 23.0
 theme = ExtResource("3_1bvp3")
 text = "Monsters Killed: "
 
-[node name="Overworld" parent="." instance=ExtResource("2_h2yge")]
+[node name="DeckEditor" parent="CanvasLayer" groups=["pausable"] instance=ExtResource("4_lquwl")]
+
+[node name="OpenDeckEditorButton" type="Button" parent="CanvasLayer"]
+custom_minimum_size = Vector2(100, 0)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 43.0
+grow_vertical = 0
+theme = ExtResource("5_7mycd")
+text = "EDIT"
+
+[node name="Overworld" parent="." groups=["pausable"] instance=ExtResource("2_h2yge")]
 
 [connection signal="battle_result" from="CanvasLayer/CardGame" to="." method="_on_card_game_battle_result"]
+[connection signal="close" from="CanvasLayer/DeckEditor" to="." method="_on_deck_editor_close"]
+[connection signal="pressed" from="CanvasLayer/OpenDeckEditorButton" to="." method="_on_open_deck_editor_button_pressed"]
 [connection signal="start_battle" from="Overworld" to="." method="_on_overworld_start_battle"]
