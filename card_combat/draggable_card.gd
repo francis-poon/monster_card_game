@@ -6,7 +6,7 @@ signal card_dropped(card: DraggableCard)
 @export var face: TextureRect
 @export var front_texture: Texture2D
 @export var back_texture: Texture2D
-@export var value_label: Label
+@export var card_text: Label
 
 var is_revealed: bool = true:
 	set(p_value):
@@ -14,13 +14,13 @@ var is_revealed: bool = true:
 		_update_card_face()
 var is_draggable: bool = true
 
-var card_value: int:
+var card_data: CardData:
 	set(value):
-		card_value = value
-		value_label.text = str(value)
+		card_data = value
+		card_text.text = "{0}\n{1}".format([CardData.CardType.keys()[card_data.card_type], card_data.modifier])
 
-func construct(p_card_value: int = -1, p_is_revealed: bool = true, p_is_draggable: bool = true) -> DraggableCard:
-	card_value = p_card_value
+func construct(p_card_data: CardData = CardData.new(), p_is_revealed: bool = true, p_is_draggable: bool = true) -> DraggableCard:
+	card_data = p_card_data
 	is_revealed = p_is_revealed
 	is_draggable = p_is_draggable
 	return self
@@ -34,19 +34,25 @@ func reveal_card():
 func hide_card():
 	is_revealed = false
 
+func disable_drag():
+	is_draggable = false
+
+func enable_drat():
+	is_draggable = true
+
 func _update_card_face():
 	if is_revealed:
 		face.texture = front_texture
-		value_label.show()
+		card_text.show()
 	else:
 		face.texture = back_texture
-		value_label.hide()
+		card_text.hide()
 
 func get_preview() -> Control:
 	var preview_card: MarginContainer = MarginContainer.new()
 	preview_card.custom_minimum_size = self.size
 	preview_card.add_child(face.duplicate())
-	preview_card.add_child(value_label.duplicate())
+	preview_card.add_child(card_text.duplicate())
 	return preview_card
 
 func _get_drag_data(at_position: Vector2) -> Variant:

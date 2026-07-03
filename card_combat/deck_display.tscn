@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://pta84vb7ohes"]
 
-[ext_resource type="Script" uid="uid://cnycxv13e6ycx" path="res://deck_display.gd" id="1_rmyl4"]
+[ext_resource type="Script" uid="uid://cnycxv13e6ycx" path="res://card_combat/deck_display.gd" id="1_rmyl4"]
 [ext_resource type="PackedScene" uid="uid://px84iwbjkhuq" path="res://card_combat/inventory_card.tscn" id="2_l6dlt"]
 [ext_resource type="Theme" uid="uid://cg2hufr0suof8" path="res://themes/deck_display.tres" id="3_8vt74"]
 

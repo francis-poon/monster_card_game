@@ -9,7 +9,7 @@
 atlas = ExtResource("2_xee8q")
 region = Rect2(13, 6, 13, 16)
 
-[node name="InventoryCard" type="Control" node_paths=PackedStringArray("value_label")]
+[node name="InventoryCard" type="Control" node_paths=PackedStringArray("card_text")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,7 +19,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_thmmd")
 script = ExtResource("1_kc1qb")
-value_label = NodePath("ValueLabel")
+card_text = NodePath("CardText")
 
 [node name="CardFaceTextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -31,7 +31,7 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_mvwgx")
 stretch_mode = 5
 
-[node name="ValueLabel" type="Label" parent="."]
+[node name="CardText" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

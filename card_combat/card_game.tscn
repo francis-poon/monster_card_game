@@ -48,6 +48,7 @@ grow_vertical = 1
 size_flags_vertical = 3
 
 [node name="GameOverScreen" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,6 +101,9 @@ vertical_alignment = 1
 layout_mode = 2
 alignment = 1
 
-[connection signal="opponent_died" from="OpponentBoard" to="." method="_on_opponent_board_opponent_died"]
-[connection signal="player_died" from="PlayerBoard" to="." method="_on_player_board_player_died"]
-[connection signal="player_ended_turn" from="PlayerBoard" to="." method="_on_player_board_player_ended_turn"]
+[connection signal="attack" from="OpponentBoard" to="." method="_on_opponent_board_attack"]
+[connection signal="died" from="OpponentBoard" to="." method="_on_opponent_board_died"]
+[connection signal="ended_turn" from="OpponentBoard" to="." method="_on_opponent_board_ended_turn"]
+[connection signal="attack" from="PlayerBoard" to="." method="_on_player_board_attack"]
+[connection signal="died" from="PlayerBoard" to="." method="_on_player_board_died"]
+[connection signal="ended_turn" from="PlayerBoard" to="." method="_on_player_board_ended_turn"]

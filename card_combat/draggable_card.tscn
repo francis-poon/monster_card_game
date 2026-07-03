@@ -16,7 +16,7 @@ region = Rect2(0, 6, 13, 16)
 atlas = ExtResource("2_8ei37")
 region = Rect2(13.592027, 6.6290236, 12.407973, 15.370976)
 
-[node name="DraggableCard" type="MarginContainer" node_paths=PackedStringArray("face", "value_label")]
+[node name="DraggableCard" type="MarginContainer" node_paths=PackedStringArray("face", "card_text")]
 custom_minimum_size = Vector2(120, 0)
 anchors_preset = 8
 anchor_left = 0.5
@@ -35,7 +35,7 @@ script = ExtResource("1_2cuhh")
 face = NodePath("Face")
 front_texture = SubResource("AtlasTexture_q5obu")
 back_texture = SubResource("AtlasTexture_fpac0")
-value_label = NodePath("Label")
+card_text = NodePath("Label")
 
 [node name="Face" type="TextureRect" parent="."]
 layout_mode = 2
