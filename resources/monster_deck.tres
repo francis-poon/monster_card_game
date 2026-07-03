@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_sxq3x")
-cards = [2, 2, 3, 4, 5, 6, 7, 8, 9, 9]
+cards = [2, 2, 3, 4, 0, 0, 0, 0, 1, 1]
 metadata/_custom_type_script = "uid://dle6e8t0bdmep"

@@ -22,6 +22,9 @@ func play_random_card() -> DraggableCard:
 	
 	return rand_card
 
+func size():
+	return card_container.get_child_count()
+
 func clear():
 	for child in card_container.get_children():
 		if child is DraggableCard:

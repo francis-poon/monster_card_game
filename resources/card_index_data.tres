@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="DeckData" load_steps=8 format=3 uid="uid://c7jaxuegglovq"]
+
+[ext_resource type="Script" uid="uid://dle6e8t0bdmep" path="res://resources/deck_data.gd" id="1_04syf"]
+[ext_resource type="Script" uid="uid://chbwiudp3k1xv" path="res://resources/card_data.gd" id="1_cn1o3"]
+
+[sub_resource type="Resource" id="Resource_cn1o3"]
+script = ExtResource("1_cn1o3")
+card_id = 0
+modifier = 1
+metadata/_custom_type_script = "uid://chbwiudp3k1xv"
+
+[sub_resource type="Resource" id="Resource_aex5h"]
+script = ExtResource("1_cn1o3")
+card_id = 1
+card_type = 1
+modifier = 1
+metadata/_custom_type_script = "uid://chbwiudp3k1xv"
+
+[sub_resource type="Resource" id="Resource_7tatr"]
+script = ExtResource("1_cn1o3")
+card_id = 2
+card_type = 2
+modifier = 1
+metadata/_custom_type_script = "uid://chbwiudp3k1xv"
+
+[sub_resource type="Resource" id="Resource_2nqew"]
+script = ExtResource("1_cn1o3")
+card_id = 3
+card_type = 3
+modifier = 1
+metadata/_custom_type_script = "uid://chbwiudp3k1xv"
+
+[sub_resource type="Resource" id="Resource_0bf6v"]
+script = ExtResource("1_cn1o3")
+card_id = 4
+card_type = 4
+modifier = 1
+metadata/_custom_type_script = "uid://chbwiudp3k1xv"
+
+[resource]
+script = ExtResource("1_04syf")
+cards = [SubResource("Resource_cn1o3"), SubResource("Resource_aex5h"), SubResource("Resource_7tatr"), SubResource("Resource_2nqew"), SubResource("Resource_0bf6v")]
+metadata/_custom_type_script = "uid://dle6e8t0bdmep"

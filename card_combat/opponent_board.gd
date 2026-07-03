@@ -1,54 +1,40 @@
 class_name OpponentBoard
-extends Control
-
-signal opponent_died
-
-var MAX_HEALTH: int = 5
-
-@export var card_hand: CardHand
-@export var card_scene: PackedScene
-@export var play_field: PlayField
-@export var health_bar: TiledProgressBar
-
-var health: int:
-	set(value):
-		health = value
-		health_bar.value = value
-var deck: PlayableDeck = PlayableDeck.new()
+extends CardGameBoard
 
 func start_game(p_deck: PlayableDeck, start_hand_size: int):
-	deck = p_deck
-	health_bar.max_value = MAX_HEALTH
-	health = 5
-	card_hand.clear()
-	play_field.clear()
-	draw_cards(start_hand_size)
+	super.start_game(p_deck, start_hand_size)
+
+func end_game():
+	super.end_game()
 
 func start_turn():
-	draw_cards(1)
+	super.start_turn()
 	play_round()
 
-func reveal_turn():
-	play_field.field_card.reveal_card()
-
 func end_turn():
-	if get_card_value() != -1:
-		deck.discard(get_card_value())
-	play_field.clear()
-
-func draw_cards(draw_count: int):
-	for c in range(draw_count):
-		var new_card: DraggableCard = card_scene.instantiate()
-		new_card = new_card.construct(deck.draw(), false, false)
-		card_hand.add_card(new_card)
+	super.end_turn()
 
 func play_round():
-	play_field.add_card(card_hand.play_random_card())
+	var number_of_cards_to_play: int = randi_range(1, card_hand.size())
+	for c in range(number_of_cards_to_play):
+		play_field.add_card(card_hand.play_random_card())
+		await get_tree().create_timer(1).timeout
+	end_turn()
 
-func get_card_value() -> int:
-	return play_field.field_card.card_value
+func draw_cards(draw_count: int):
+	super.draw_cards(draw_count)
 
 func take_damage(damage: int):
-	health -= damage
-	if health <= 0:
-		opponent_died.emit()
+	super.take_damage(damage)
+
+func heal(heal_value: int):
+	super.heal(heal_value)
+
+func set_shield(shield_value: int):
+	super.set_shield(shield_value)
+
+func set_armor(armor_value: int):
+	super.set_armor(armor_value)
+
+func _on_play_field_play_card(card: CardData) -> void:
+	super._on_play_field_play_card(card)

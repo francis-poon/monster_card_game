@@ -10,7 +10,7 @@ signal card_pressed(card: InventoryCard)
 
 func generate_random_deck(card_count: int):
 	for c in range(card_count):
-		var card: InventoryCard = card_scene.instantiate().construct(randi_range(1,10))
+		var card: InventoryCard = card_scene.instantiate().construct(randi_range(0,4))
 		
 		card.custom_minimum_size = Vector2(0, 200)
 		card_grid.add_child(card)
@@ -40,7 +40,7 @@ func get_deck_data() -> DeckData:
 	var deck_data: DeckData = DeckData.new()
 	for child in card_grid.get_children():
 		if child is InventoryCard:
-			deck_data.cards.append(child.card_value)
+			deck_data.cards.append(child.card_id)
 	return deck_data
 
 func _on_card_pressed(card: InventoryCard):

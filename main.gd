@@ -22,7 +22,7 @@ func _ready():
 	player_deck = PlayableDeck.new(ResourceLoader.load("res://resources/player_deck.tres"))
 	monster_deck = PlayableDeck.new(ResourceLoader.load("res://resources/monster_deck.tres"))
 	inventory = ResourceLoader.load("res://resources/inventory.tres")
-	inventory.cards = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,11,1,1,1,1,1,1,1,11,1,1,1,1]
+	#inventory.cards = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,11,1,1,1,1,1,1,1,11,1,1,1,1]
 
 
 func _on_overworld_start_battle() -> void:
