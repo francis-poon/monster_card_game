@@ -1,30 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpkbr2dlfsua1"]
+[gd_scene format=3 uid="uid://bpkbr2dlfsua1"]
 
 [ext_resource type="Script" uid="uid://di42cky0l5abk" path="res://world/monster_character.gd" id="1_wywte"]
-[ext_resource type="Texture2D" uid="uid://c3kgkf1ubvrcl" path="res://assets/monster_sprites.png" id="2_vajf2"]
+[ext_resource type="Texture2D" uid="uid://bkv7lq83wxepw" path="res://assets/monster_sprites/001_base.png" id="3_6lgk6"]
+[ext_resource type="Texture2D" uid="uid://u8dke8r1y0l7" path="res://assets/monster_sprites/001_color_mask.png" id="4_8ma33"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr7yn"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yuatc"]
-atlas = ExtResource("2_vajf2")
-region = Rect2(20, 0, 18, 19)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vajf2"]
 size = Vector2(38, 38)
 
-[node name="MonsterCharacter" type="CharacterBody2D"]
+[node name="MonsterCharacter" type="CharacterBody2D" unique_id=614068556 node_paths=PackedStringArray("sprite_base", "sprite_color_mask")]
 collision_layer = 2
 script = ExtResource("1_wywte")
+sprite_base = NodePath("SpriteBase2D")
+sprite_color_mask = NodePath("SpriteColorMask2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=7658545]
 shape = SubResource("RectangleShape2D_xr7yn")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_yuatc")
+[node name="SpriteBase2D" type="Sprite2D" parent="." unique_id=1547313878]
+texture = ExtResource("3_6lgk6")
 
-[node name="DetectionArea2D" type="Area2D" parent="."]
+[node name="SpriteColorMask2D" type="Sprite2D" parent="." unique_id=80802309]
+modulate = Color(0.56078434, 0.09019608, 0.23137255, 1)
+texture = ExtResource("4_8ma33")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
+[node name="DetectionArea2D" type="Area2D" parent="." unique_id=674870362]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D" unique_id=539496765]
 shape = SubResource("RectangleShape2D_vajf2")
 
 [connection signal="body_entered" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_entered"]

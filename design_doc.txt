@@ -1,0 +1,43 @@
+change star round to not draw cards if this round is game's starting round
+
+
+
+monster
+	deck
+	name
+	deck size
+	starting hand size
+	draw size
+	hp
+	drop table
+capturing a monster
+selecting which monsters deck to edit
+choose monster battle order
+
+caught monsters have a set of untamed cards so that they're playable immediatly.
+	untamed cards do not go into inventory when unequipped, but into the monsters untamed cards repository
+	untamed cards are meant to be replaced by the cards the player has in the inventory
+
+attack
+shield
+	like health but only lasts until next turn
+armor
+	does not stack
+	subtracts armor value from damage 
+	damage:2*armor ratio of breaking the armor
+heal
+draw
+
+4 states
+	init_game
+	play_turn
+	opponent_turn
+	end_game
+start of our turn reset shield to 0
+draw cards
+play cards
+	apply damage to oponent
+	apply heals
+	apply shields
+	apply armor
+	

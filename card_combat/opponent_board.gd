@@ -1,8 +1,16 @@
 class_name OpponentBoard
 extends CardGameBoard
 
-func start_game(p_deck: PlayableDeck, start_hand_size: int):
-	super.start_game(p_deck, start_hand_size)
+@export var hand_card_count_label: Label
+
+var drop_table: Array
+
+func start_game(p_monster_data: MonsterData):
+	assert(p_monster_data is WildMonsterData, "Wild monster type is incorrect.")
+	super.start_game(p_monster_data)
+	drop_table = p_monster_data.drop_table
+	monster_sprite_color_mask.modulate = Globals.wild_monster_color
+	name_label.text = p_monster_data.name
 
 func end_game():
 	super.end_game()
@@ -24,6 +32,9 @@ func play_round():
 func draw_cards(draw_count: int):
 	super.draw_cards(draw_count)
 
+func roll_drop_table() -> Array:
+	return [drop_table.pick_random()]
+
 func take_damage(damage: int):
 	super.take_damage(damage)
 
@@ -38,3 +49,7 @@ func set_armor(armor_value: int):
 
 func _on_play_field_play_card(card: CardData) -> void:
 	super._on_play_field_play_card(card)
+
+
+func _on_card_hand_count_changed(count: int) -> void:
+	hand_card_count_label.text = str(count)

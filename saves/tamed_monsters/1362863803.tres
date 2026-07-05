@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="TamedMonsterData" format=3 uid="uid://fuvr2gk06sxm"]
+
+[ext_resource type="Script" uid="uid://dle6e8t0bdmep" path="res://resources/deck_data.gd" id="1_gxq0u"]
+[ext_resource type="Script" uid="uid://d1kyqpwptqbhh" path="res://resources/tamed_monster_data.gd" id="2_4w66f"]
+
+[sub_resource type="Resource" id="Resource_4w66f"]
+script = ExtResource("1_gxq0u")
+cards = [2, 2, 3, 4, 0, 0, 0, 0, 1, 1]
+metadata/_custom_type_script = "uid://dle6e8t0bdmep"
+
+[resource]
+script = ExtResource("2_4w66f")
+nickname = "Bravo"
+uid = "1362863803"
+monster_id = 1
+deck = SubResource("Resource_4w66f")
+name = "Bravo"
+deck_size = 10
+starting_hand_size = 3
+draw_size = 2
+max_health = 1

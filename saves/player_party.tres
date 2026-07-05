@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="PlayerPartyData" format=3]
+
+[ext_resource type="Script" path="res://resources/player_party_data.gd" id="1_02r74"]
+
+[resource]
+script = ExtResource("1_02r74")
+party_uids = ["1129323964", "0952710598", "0795364211", "0636786800", "1362863802", "0148405231", "0991809866", "1362863803", "0041697557"]

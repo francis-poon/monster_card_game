@@ -1,31 +1,51 @@
-[gd_scene load_steps=14 format=3 uid="uid://bh35pb1sbmnli"]
+[gd_scene format=3 uid="uid://bh35pb1sbmnli"]
 
 [ext_resource type="Script" uid="uid://br8c8cft67ybg" path="res://card_combat/player_board.gd" id="1_0wpmg"]
 [ext_resource type="PackedScene" uid="uid://bs0gvplcdhv4x" path="res://card_combat/play_field.tscn" id="1_ple8l"]
 [ext_resource type="PackedScene" uid="uid://duoj0qqmhickr" path="res://card_combat/card_hand.tscn" id="2_0wpmg"]
 [ext_resource type="PackedScene" uid="uid://d0172sbylhkd5" path="res://card_combat/draggable_card.tscn" id="2_fog5y"]
-[ext_resource type="Theme" uid="uid://buvopmxxup0hl" path="res://themes/card_text.tres" id="5_158oa"]
-[ext_resource type="Texture2D" uid="uid://ujrf0qcxcvag" path="res://assets/ui_icons.png" id="6_fi8n1"]
-[ext_resource type="Script" uid="uid://c2b0mcwaerlr3" path="res://utils/tiled_progress_bar.gd" id="6_t6qys"]
-[ext_resource type="Texture2D" uid="uid://c3kgkf1ubvrcl" path="res://assets/monster_sprites.png" id="8_lagni"]
-[ext_resource type="Theme" uid="uid://bx5pjdil7p4ae" path="res://themes/temp_theme.tres" id="9_r3ql1"]
+[ext_resource type="Texture2D" uid="uid://d0g5m5nkxuxe4" path="res://assets/player_card_board.png" id="3_oo1no"]
+[ext_resource type="Script" uid="uid://bp7l7x60jy2g4" path="res://utils/tile_scale_container.gd" id="5_81gwe"]
+[ext_resource type="Theme" uid="uid://cw5tc68q7kjfq" path="res://themes/button.tres" id="5_oo1no"]
+[ext_resource type="Texture2D" uid="uid://gcxew3v281ir" path="res://assets/monster_sprites/000_base.png" id="8_oo1no"]
+[ext_resource type="Script" uid="uid://c4dlgddbbe0sd" path="res://utils/clip_texture_progress_bar.gd" id="9_2dv4c"]
+[ext_resource type="Texture2D" uid="uid://ux1kjvm8ceox" path="res://assets/monster_sprites/000_color_mask.png" id="9_81gwe"]
+[ext_resource type="Script" uid="uid://dldnkpwvyfntd" path="res://card_combat/health_ui.gd" id="11_2dv4c"]
+[ext_resource type="Texture2D" uid="uid://dw8unsjw2po0" path="res://assets/card_board_ui_icons.png" id="11_2lyhq"]
+[ext_resource type="Script" uid="uid://bknf8cecvomwn" path="res://card_combat/spin_wheel.gd" id="12_afn8b"]
+[ext_resource type="Theme" uid="uid://csly7nq8n54pg" path="res://themes/header_label.tres" id="12_eqqmh"]
+[ext_resource type="Theme" uid="uid://d152fmdo8pu7m" path="res://themes/description_label.tres" id="13_eqqmh"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fi8n1"]
-bg_color = Color(0, 0, 0, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6bfk"]
+atlas = ExtResource("11_2lyhq")
+region = Rect2(28, 11, 11, 7)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lagni"]
-atlas = ExtResource("6_fi8n1")
-region = Rect2(12, 0, 6, 6)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2dv4c"]
+load_path = "res://.godot/imported/card_board_ui_icons.png-263bb41da7d407eb50ccd21446a550cd.ctex"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kfgix"]
-atlas = ExtResource("6_fi8n1")
-region = Rect2(0, 0, 6, 6)
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3kuu"]
+atlas = SubResource("CompressedTexture2D_2dv4c")
+region = Rect2(0, 12, 28, 3)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g0478"]
-atlas = ExtResource("8_lagni")
-region = Rect2(0, 0, 20, 21)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5sdjc"]
+load_path = "res://.godot/imported/card_board_ui_icons.png-263bb41da7d407eb50ccd21446a550cd.ctex"
 
-[node name="PlayerBoard" type="Control" node_paths=PackedStringArray("end_turn_button", "card_hand", "play_field", "health_bar", "armor_value_label", "shield_value_label")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nc8vd"]
+atlas = SubResource("CompressedTexture2D_5sdjc")
+region = Rect2(0, 15, 28, 3)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qn1xq"]
+load_path = "res://.godot/imported/card_board_ui_icons.png-263bb41da7d407eb50ccd21446a550cd.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvl0q"]
+atlas = SubResource("CompressedTexture2D_qn1xq")
+region = Rect2(0, 9, 28, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_br8l7"]
+atlas = ExtResource("3_oo1no")
+region = Rect2(0, 51, 112, 21)
+
+[node name="PlayerBoard" type="Control" unique_id=1712432721 node_paths=PackedStringArray("end_turn_button", "run_button", "card_hand", "play_field", "health_ui", "armor_value_label", "shield_value_label", "monster_sprite_base", "monster_sprite_color_mask", "name_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,15 +54,122 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_0wpmg")
-end_turn_button = NodePath("VBoxContainer/MarginContainer/EndTurnButton")
-card_hand = NodePath("VBoxContainer/MarginContainer/CardHand")
+end_turn_button = NodePath("VBoxContainer/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/EndTurnButton")
+run_button = NodePath("VBoxContainer/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/RunButton")
+card_hand = NodePath("VBoxContainer/HBoxContainer/MarginContainer/MarginContainer/CardHand")
 card_scene = ExtResource("2_fog5y")
 play_field = NodePath("VBoxContainer/PlayField")
-health_bar = NodePath("HealthBar")
-armor_value_label = NodePath("HBoxContainer/ArmorValueLabel")
-shield_value_label = NodePath("HBoxContainer2/ShieldValueLabel")
+health_ui = NodePath("HealthUI")
+armor_value_label = NodePath("ArmorValueLabel")
+shield_value_label = NodePath("ShieldValueLabel")
+monster_sprite_base = NodePath("MonsterSpriteMarginContainer/MonsterSpriteBase")
+monster_sprite_color_mask = NodePath("MonsterSpriteMarginContainer/MonsterSpriteColorMask")
+name_label = NodePath("MarginContainer/NameLabel")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=373557738]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_oo1no")
+
+[node name="HealthUI" type="Control" parent="." unique_id=1436252086 node_paths=PackedStringArray("spin_wheel", "max_health_label", "health_bar")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("11_2dv4c")
+spin_wheel = NodePath("SpinWheel")
+max_health_label = NodePath("MaxHealthLabel")
+health_bar = NodePath("HealthBar")
+
+[node name="MaxHealthLabel" type="Label" parent="HealthUI" unique_id=343677612]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 299.0
+offset_top = -186.0
+offset_right = 339.0
+offset_bottom = -163.0
+grow_vertical = 0
+theme = ExtResource("13_eqqmh")
+theme_override_colors/font_color = Color(0.11764706, 0.49411765, 0.42352942, 1)
+text = "18"
+
+[node name="SpinWheel" type="Control" parent="HealthUI" unique_id=107430753 node_paths=PackedStringArray("value_label", "pivot")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_afn8b")
+value_label = NodePath("TextureRect/Pivot/ValueLabel")
+pivot = NodePath("TextureRect/Pivot")
+
+[node name="TextureRect" type="TextureRect" parent="HealthUI/SpinWheel" unique_id=2000708815]
+clip_children = 2
+custom_minimum_size = Vector2(88, 56)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 216.0
+offset_top = -224.0
+offset_right = 304.0
+offset_bottom = -168.0
+grow_vertical = 0
+texture = SubResource("AtlasTexture_g6bfk")
+stretch_mode = 4
+
+[node name="Pivot" type="Control" parent="HealthUI/SpinWheel/TextureRect" unique_id=763535821]
+anchors_preset = 0
+offset_left = 45.0
+offset_top = 104.0
+offset_right = 45.0
+offset_bottom = 104.0
+
+[node name="ValueLabel" type="Label" parent="HealthUI/SpinWheel/TextureRect/Pivot" unique_id=482443958]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -24.0
+offset_top = -101.0
+offset_right = 24.0
+offset_bottom = -57.0
+grow_horizontal = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme = ExtResource("12_eqqmh")
+theme_override_colors/font_color = Color(1, 0.99607843, 0.8392157, 1)
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBar" type="MarginContainer" parent="HealthUI" unique_id=1826580414]
+custom_minimum_size = Vector2(224, 24)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -193.0
+offset_right = 224.0
+offset_bottom = -169.0
+grow_vertical = 0
+script = ExtResource("9_2dv4c")
+under_texture = SubResource("AtlasTexture_p3kuu")
+progress_texture = SubResource("AtlasTexture_nc8vd")
+over_texture = SubResource("AtlasTexture_jvl0q")
+stretch_mode = 4
+metadata/_custom_type_script = "uid://c4dlgddbbe0sd"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=412433072]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,96 +177,138 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PlayField" parent="VBoxContainer" node_paths=PackedStringArray("card_target_location") instance=ExtResource("1_ple8l")]
+[node name="PlayField" parent="VBoxContainer" unique_id=347847430 node_paths=PackedStringArray("card_target_location") instance=ExtResource("1_ple8l")]
 layout_mode = 2
 size_flags_vertical = 3
 card_target_location = NodePath("CardTargetLocation")
 
-[node name="CardTargetLocation" type="Control" parent="VBoxContainer/PlayField"]
+[node name="CardTargetLocation" type="Control" parent="VBoxContainer/PlayField" unique_id=92211714]
 anchors_preset = 0
-offset_left = 290.0
-offset_top = 236.0
-offset_right = 330.0
-offset_bottom = 276.0
+offset_left = 363.0
+offset_top = 261.0
+offset_right = 363.0
+offset_bottom = 261.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=463869070]
+custom_minimum_size = Vector2(0, 168)
+layout_mode = 2
+theme_override_constants/separation = -8
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer" unique_id=388827989]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 6.0
+
+[node name="TileScaleContainer" type="Container" parent="VBoxContainer/HBoxContainer/MarginContainer" unique_id=1834468089]
+layout_mode = 2
+script = ExtResource("5_81gwe")
+tile_scale = 8.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/HBoxContainer/MarginContainer/TileScaleContainer" unique_id=1773935404]
+layout_mode = 2
+texture = SubResource("AtlasTexture_br8l7")
+patch_margin_left = 4
+patch_margin_top = 3
+patch_margin_right = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/MarginContainer" unique_id=2144337563]
+layout_mode = 2
+theme_override_constants/margin_top = 8
+
+[node name="CardHand" parent="VBoxContainer/HBoxContainer/MarginContainer/MarginContainer" unique_id=610852040 instance=ExtResource("2_0wpmg")]
 layout_mode = 2
 
-[node name="CardHand" parent="VBoxContainer/MarginContainer" instance=ExtResource("2_0wpmg")]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer" unique_id=1574442563]
 layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 0.99607843, 0.8392157, 1)
 
-[node name="EndTurnButton" type="Button" parent="VBoxContainer/MarginContainer"]
-custom_minimum_size = Vector2(120, 60)
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/ColorRect" unique_id=1100263826]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/ColorRect/MarginContainer" unique_id=940587541]
 layout_mode = 2
-size_flags_horizontal = 8
+alignment = 1
+
+[node name="EndTurnButton" type="Button" parent="VBoxContainer/HBoxContainer/ColorRect/MarginContainer/VBoxContainer" unique_id=1461321331]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
 size_flags_vertical = 4
-theme = ExtResource("5_158oa")
-theme_override_styles/normal = SubResource("StyleBoxFlat_fi8n1")
+theme = ExtResource("5_oo1no")
 text = "END TURN"
 
-[node name="HealthBar" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(0, 54)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = -252.0
-offset_right = 256.0
-offset_bottom = -198.0
-grow_vertical = 0
-theme_override_constants/separation = -8
-script = ExtResource("6_t6qys")
-under_texture = SubResource("AtlasTexture_lagni")
-fill_texture = SubResource("AtlasTexture_kfgix")
-value = 5
-max_value = 5
-metadata/_custom_type_script = "uid://c2b0mcwaerlr3"
+[node name="RunButton" type="Button" parent="VBoxContainer/HBoxContainer/ColorRect/MarginContainer/VBoxContainer" unique_id=1836924763]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("5_oo1no")
+text = "RUN"
 
-[node name="MonsterSprite" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
+[node name="ArmorValueLabel" type="Label" parent="." unique_id=1667912248]
+layout_mode = 0
 offset_left = 45.0
-offset_top = -450.0
-offset_right = 225.0
-offset_bottom = -261.0
-grow_vertical = 0
-texture = SubResource("AtlasTexture_g0478")
-expand_mode = 3
+offset_top = 353.0
+offset_right = 69.0
+offset_bottom = 376.0
+theme = ExtResource("13_eqqmh")
+theme_override_colors/font_color = Color(1, 0.99607843, 0.8392157, 1)
+text = "1"
+
+[node name="ShieldValueLabel" type="Label" parent="." unique_id=1776084694]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 353.0
+offset_right = 148.0
+offset_bottom = 376.0
+theme = ExtResource("13_eqqmh")
+theme_override_colors/font_color = Color(1, 0.99607843, 0.8392157, 1)
+text = "1"
+
+[node name="MonsterSpriteMarginContainer" type="MarginContainer" parent="." unique_id=1856959236]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -136.0
+offset_right = 192.0
+offset_bottom = 56.0
+grow_vertical = 2
+
+[node name="MonsterSpriteBase" type="TextureRect" parent="MonsterSpriteMarginContainer" unique_id=990288832]
+layout_mode = 2
+texture = ExtResource("8_oo1no")
 stretch_mode = 5
+flip_h = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 148.0
-offset_right = 70.0
-offset_bottom = 188.0
-
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="MonsterSpriteColorMask" type="TextureRect" parent="MonsterSpriteMarginContainer" unique_id=896281138]
+modulate = Color(0.11764706, 0.49411765, 0.42352942, 1)
 layout_mode = 2
-theme = ExtResource("9_r3ql1")
-text = "Armor: "
+texture = ExtResource("9_81gwe")
+stretch_mode = 5
+flip_h = true
 
-[node name="ArmorValueLabel" type="Label" parent="HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=142605937]
+layout_mode = 1
+offset_top = 108.0
+offset_right = 108.0
+offset_bottom = 152.0
+theme_override_constants/margin_left = 8
+
+[node name="NameLabel" type="Label" parent="MarginContainer" unique_id=622805498]
 layout_mode = 2
-theme = ExtResource("9_r3ql1")
+theme = ExtResource("12_eqqmh")
+text = "Name"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 118.0
-offset_top = 148.0
-offset_right = 179.0
-offset_bottom = 188.0
-
-[node name="Label" type="Label" parent="HBoxContainer2"]
-layout_mode = 2
-theme = ExtResource("9_r3ql1")
-text = "Shield: "
-
-[node name="ShieldValueLabel" type="Label" parent="HBoxContainer2"]
-layout_mode = 2
-theme = ExtResource("9_r3ql1")
-
-[connection signal="pressed" from="VBoxContainer/MarginContainer/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ColorRect/MarginContainer/VBoxContainer/RunButton" to="." method="_on_run_button_pressed"]

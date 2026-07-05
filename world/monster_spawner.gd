@@ -3,6 +3,8 @@ extends Node2D
 
 signal monster_encountered_player(monster: MonsterCharacter)
 
+@export var spawn_list: Array
+@export var spawn_range: float
 @export var monster_scene: PackedScene
 @export var spawn_limit: int
 @export var spawn_delay_timer: Timer
@@ -15,6 +17,11 @@ var spawn_queue: int
 var is_spawning: bool
 
 func _ready() -> void:
+	if spawn_list.size() <= 0:
+		queue_free()
+		return
+	for monster_id in spawn_list:
+		assert(Globals.has_monster(monster_id), "Monster spawner contains invalid id")
 	spawn_delay_timer.wait_time = spawn_delay
 	spawn_delay_timer.one_shot = true
 	is_spawning = false
@@ -24,10 +31,12 @@ func _ready() -> void:
 
 func _spawn():
 	print("Spawning monster")
-	var monster: MonsterCharacter = monster_scene.instantiate()
+	var monster_id: int = spawn_list.pick_random()
+	var monster: MonsterCharacter = monster_scene.instantiate().construct(Globals.get_monster(monster_id))
 	monster.died.connect(_on_monster_death)
 	monster.encountered_player.connect(_on_monster_encountered_player)
 	monster_container.add_child(monster)
+	monster.position = Vector2(randf_range(-spawn_range, spawn_range), randf_range(-spawn_range, spawn_range))
 
 func queue(count: int):
 	spawn_queue += count

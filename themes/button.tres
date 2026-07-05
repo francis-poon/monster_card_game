@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=15 format=3 uid="uid://cw5tc68q7kjfq"]
+[gd_resource type="Theme" format=3 uid="uid://cw5tc68q7kjfq"]
 
 [ext_resource type="Texture2D" uid="uid://ujrf0qcxcvag" path="res://assets/ui_icons.png" id="1_dpjbf"]
+[ext_resource type="FontFile" uid="uid://bo5patjmbqk08" path="res://assets/Pixeloid_Font_0_5/OpenType (.otf)/PixeloidSans.otf" id="2_s8pfl"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ekwdc"]
 load_path = "res://.godot/imported/ui_icons.png-a2f6dc6d5a949abad87f91276698b409.ctex"
@@ -44,9 +45,17 @@ atlas = SubResource("CompressedTexture2D_8xwyx")
 region = Rect2(0, 22, 10, 4)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eqgws"]
+content_margin_left = 16.0
+content_margin_right = 16.0
 texture = SubResource("AtlasTexture_hu5cb")
+texture_margin_left = 8.0
+texture_margin_top = 4.0
+texture_margin_right = 8.0
+texture_margin_bottom = 4.0
 
 [resource]
+default_font = ExtResource("2_s8pfl")
+default_font_size = 18
 Button/styles/disabled = SubResource("StyleBoxTexture_gkb8j")
 Button/styles/focus = SubResource("StyleBoxTexture_s8pfl")
 Button/styles/hover = SubResource("StyleBoxTexture_pm7bq")

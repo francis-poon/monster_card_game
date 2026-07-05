@@ -1,33 +1,36 @@
-[gd_scene load_steps=7 format=3 uid="uid://dcyslt11yemyv"]
+[gd_scene format=3 uid="uid://dcyslt11yemyv"]
 
 [ext_resource type="Script" uid="uid://cgfjs6nw7f1bj" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bihdp8501iowo" path="res://card_combat/card_game.tscn" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://5bti5i4rbhsp" path="res://world/overworld.tscn" id="2_h2yge"]
 [ext_resource type="Theme" uid="uid://buvopmxxup0hl" path="res://themes/card_text.tres" id="3_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://dh2plyj1m6s8a" path="res://card_combat/deck_editor.tscn" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://dh2plyj1m6s8a" path="res://deck_editing/deck_editor.tscn" id="4_lquwl"]
 [ext_resource type="Theme" uid="uid://cw5tc68q7kjfq" path="res://themes/button.tres" id="5_7mycd"]
+[ext_resource type="PackedScene" uid="uid://dthcme3qf53an" path="res://deck_editing/tamed_monster_selector.tscn" id="6_272bh"]
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("card_game", "overworld", "kill_count_label", "deck_editor", "open_deck_editor_button")]
+[node name="Main" type="Node2D" unique_id=2085090960 node_paths=PackedStringArray("card_game", "overworld", "kill_count_label", "deck_editor", "open_tamed_monster_selector_button", "tamed_monster_selector", "combat_cooldown_timer")]
 script = ExtResource("1_0xm2m")
 card_game = NodePath("CanvasLayer/CardGame")
 overworld = NodePath("Overworld")
 kill_count_label = NodePath("CanvasLayer/KillCountLabel")
 deck_editor = NodePath("CanvasLayer/DeckEditor")
-open_deck_editor_button = NodePath("CanvasLayer/OpenDeckEditorButton")
+open_tamed_monster_selector_button = NodePath("CanvasLayer/OpenTamedMonsterSelectorButton")
+tamed_monster_selector = NodePath("CanvasLayer/TamedMonsterSelector")
+combat_cooldown_timer = NodePath("CombatCooldownTimer")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1696025287]
 
-[node name="CardGame" parent="CanvasLayer" groups=["pausable"] instance=ExtResource("2_1bvp3")]
+[node name="CardGame" parent="CanvasLayer" unique_id=860142207 groups=["pausable"] instance=ExtResource("2_1bvp3")]
 
-[node name="KillCountLabel" type="Label" parent="CanvasLayer"]
+[node name="KillCountLabel" type="Label" parent="CanvasLayer" unique_id=1004337307]
 offset_right = 40.0
 offset_bottom = 23.0
 theme = ExtResource("3_1bvp3")
 text = "Monsters Killed: "
 
-[node name="DeckEditor" parent="CanvasLayer" groups=["pausable"] instance=ExtResource("4_lquwl")]
+[node name="DeckEditor" parent="CanvasLayer" unique_id=1856512071 groups=["pausable"] instance=ExtResource("4_lquwl")]
 
-[node name="OpenDeckEditorButton" type="Button" parent="CanvasLayer"]
+[node name="OpenTamedMonsterSelectorButton" type="Button" parent="CanvasLayer" unique_id=852987805]
 custom_minimum_size = Vector2(100, 0)
 anchors_preset = 2
 anchor_top = 1.0
@@ -36,11 +39,21 @@ offset_top = -31.0
 offset_right = 43.0
 grow_vertical = 0
 theme = ExtResource("5_7mycd")
-text = "EDIT"
+text = "MONSTERS"
 
-[node name="Overworld" parent="." groups=["pausable"] instance=ExtResource("2_h2yge")]
+[node name="TamedMonsterSelector" parent="CanvasLayer" unique_id=530506606 instance=ExtResource("6_272bh")]
+
+[node name="Overworld" parent="." unique_id=1896075675 groups=["pausable"] instance=ExtResource("2_h2yge")]
+
+[node name="CombatCooldownTimer" type="Timer" parent="." unique_id=804411579]
+wait_time = 2.0
+one_shot = true
 
 [connection signal="battle_result" from="CanvasLayer/CardGame" to="." method="_on_card_game_battle_result"]
 [connection signal="close" from="CanvasLayer/DeckEditor" to="." method="_on_deck_editor_close"]
-[connection signal="pressed" from="CanvasLayer/OpenDeckEditorButton" to="." method="_on_open_deck_editor_button_pressed"]
+[connection signal="save" from="CanvasLayer/DeckEditor" to="." method="_on_deck_editor_save"]
+[connection signal="pressed" from="CanvasLayer/OpenTamedMonsterSelectorButton" to="." method="_on_open_tamed_monster_selector_button_pressed"]
+[connection signal="close" from="CanvasLayer/TamedMonsterSelector" to="." method="_on_tamed_monster_selector_close"]
+[connection signal="edit_tamed_monster" from="CanvasLayer/TamedMonsterSelector" to="." method="_on_tamed_monster_selector_edit_tamed_monster"]
 [connection signal="start_battle" from="Overworld" to="." method="_on_overworld_start_battle"]
+[connection signal="timeout" from="CombatCooldownTimer" to="." method="_on_combat_cooldown_timer_timeout"]

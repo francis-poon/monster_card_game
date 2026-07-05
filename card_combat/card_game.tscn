@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bihdp8501iowo"]
+[gd_scene format=3 uid="uid://bihdp8501iowo"]
 
 [ext_resource type="Script" uid="uid://p6qt2wsmw7sa" path="res://card_combat/card_game.gd" id="1_1m8ml"]
 [ext_resource type="PackedScene" uid="uid://bh35pb1sbmnli" path="res://card_combat/player_board.tscn" id="2_2jybh"]
@@ -6,8 +6,22 @@
 [ext_resource type="PackedScene" uid="uid://bruta8seslbpi" path="res://card_combat/opponent_board.tscn" id="2_p03o1"]
 [ext_resource type="Texture2D" uid="uid://cd7jwa0ntrcm3" path="res://assets/forest_background_01.png" id="2_vimfd"]
 [ext_resource type="FontFile" uid="uid://bo5patjmbqk08" path="res://assets/Pixeloid_Font_0_5/OpenType (.otf)/PixeloidSans.otf" id="3_csu0h"]
+[ext_resource type="Script" uid="uid://bp5clpyawn0lb" path="res://card_combat/game_over_screen.gd" id="6_ipn6f"]
+[ext_resource type="Theme" uid="uid://cw5tc68q7kjfq" path="res://themes/button.tres" id="8_3o6be"]
+[ext_resource type="Theme" uid="uid://csly7nq8n54pg" path="res://themes/header_label.tres" id="9_3pjfx"]
 
-[node name="CardGame" type="Control" node_paths=PackedStringArray("player_board", "opponent_board", "game_over_screen", "game_over_label", "drops_display", "drops_container")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3pjfx"]
+bg_color = Color(0.11764706, 0.1254902, 0.14509805, 1)
+
+[sub_resource type="Theme" id="Theme_byonu"]
+LineEdit/colors/font_color = Color(1, 0.99607843, 0.8392157, 1)
+LineEdit/colors/font_placeholder_color = Color(0.56078434, 0.5568628, 0.49019608, 1)
+LineEdit/font_sizes/font_size = 36
+LineEdit/fonts/font = ExtResource("3_csu0h")
+LineEdit/styles/focus = SubResource("StyleBoxFlat_3pjfx")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_3pjfx")
+
+[node name="CardGame" type="Control" unique_id=769999776 node_paths=PackedStringArray("player_board", "opponent_board", "game_over_screen")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,12 +33,9 @@ script = ExtResource("1_1m8ml")
 player_board = NodePath("PlayerBoard")
 opponent_board = NodePath("OpponentBoard")
 game_over_screen = NodePath("GameOverScreen")
-game_over_label = NodePath("GameOverScreen/VBoxContainer/GameOverLabel")
-drops_display = NodePath("GameOverScreen/VBoxContainer/DropsDisplay")
-drops_container = NodePath("GameOverScreen/VBoxContainer/DropsDisplay/DropsContainer")
 draggable_card_scene = ExtResource("2_hxwv0")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=1855092056]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,21 +44,14 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_vimfd")
 
-[node name="OpponentBoard" parent="." instance=ExtResource("2_p03o1")]
+[node name="OpponentBoard" parent="." unique_id=937121152 instance=ExtResource("2_p03o1")]
 layout_mode = 1
 
-[node name="PlayerBoard" parent="." instance=ExtResource("2_2jybh")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 1152.0
-offset_bottom = 648.0
-grow_horizontal = 1
-grow_vertical = 1
+[node name="PlayerBoard" parent="." unique_id=1143733631 instance=ExtResource("2_2jybh")]
+layout_mode = 1
 size_flags_vertical = 3
 
-[node name="GameOverScreen" type="Control" parent="."]
+[node name="GameOverScreen" type="Control" parent="." unique_id=1193702766 node_paths=PackedStringArray("game_over_label", "drops_display", "drops_container", "drop_capture_selector", "nickname_editor", "caught_monster_label", "nickname_line_edit")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -56,8 +60,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("6_ipn6f")
+draggable_card_scene = ExtResource("2_hxwv0")
+game_over_label = NodePath("VBoxContainer/GameOverLabel")
+drops_display = NodePath("VBoxContainer/DropsDisplay")
+drops_container = NodePath("VBoxContainer/DropsDisplay/DropsContainer")
+drop_capture_selector = NodePath("VBoxContainer/DropCaptureSelector")
+nickname_editor = NodePath("VBoxContainer/NicknameEditor")
+caught_monster_label = NodePath("VBoxContainer/NicknameEditor/VBoxContainer/CaughtMonsterLabel")
+nickname_line_edit = NodePath("VBoxContainer/NicknameEditor/VBoxContainer/NicknameLineEdit")
 
-[node name="ColorRect" type="ColorRect" parent="GameOverScreen"]
+[node name="ColorRect" type="ColorRect" parent="GameOverScreen" unique_id=414172940]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,7 +79,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.49803922)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen" unique_id=732017155]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -75,7 +88,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="GameOverLabel" type="Label" parent="GameOverScreen/VBoxContainer"]
+[node name="GameOverLabel" type="Label" parent="GameOverScreen/VBoxContainer" unique_id=1884822689]
 layout_mode = 2
 theme_override_constants/outline_size = 40
 theme_override_fonts/font = ExtResource("3_csu0h")
@@ -84,12 +97,12 @@ text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DropsDisplay" type="MarginContainer" parent="GameOverScreen/VBoxContainer"]
+[node name="DropsDisplay" type="MarginContainer" parent="GameOverScreen/VBoxContainer" unique_id=1833874687]
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_right = 40
 
-[node name="Label2" type="Label" parent="GameOverScreen/VBoxContainer/DropsDisplay"]
+[node name="Label2" type="Label" parent="GameOverScreen/VBoxContainer/DropsDisplay" unique_id=1106939742]
 layout_mode = 2
 theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("3_csu0h")
@@ -97,9 +110,67 @@ theme_override_font_sizes/font_size = 54
 text = "DROPS:"
 vertical_alignment = 1
 
-[node name="DropsContainer" type="HBoxContainer" parent="GameOverScreen/VBoxContainer/DropsDisplay"]
+[node name="DropsContainer" type="HBoxContainer" parent="GameOverScreen/VBoxContainer/DropsDisplay" unique_id=1293580812]
 layout_mode = 2
 alignment = 1
+
+[node name="DropCaptureSelector" type="HBoxContainer" parent="GameOverScreen/VBoxContainer" unique_id=741068800]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="DropsButton" type="Button" parent="GameOverScreen/VBoxContainer/DropCaptureSelector" unique_id=931388252]
+layout_mode = 2
+theme = ExtResource("8_3o6be")
+text = "DROPS"
+
+[node name="CaptureButton" type="Button" parent="GameOverScreen/VBoxContainer/DropCaptureSelector" unique_id=71690341]
+layout_mode = 2
+theme = ExtResource("8_3o6be")
+text = "CAPTURE"
+
+[node name="NicknameEditor" type="Control" parent="GameOverScreen/VBoxContainer" unique_id=435830935]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="GameOverScreen/VBoxContainer/NicknameEditor" unique_id=548290679]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.99607843, 0.8392157, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen/VBoxContainer/NicknameEditor" unique_id=63765135]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="CaughtMonsterLabel" type="Label" parent="GameOverScreen/VBoxContainer/NicknameEditor/VBoxContainer" unique_id=575009479]
+custom_maximum_size = Vector2(992, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("9_3pjfx")
+text = "You caught a monster! Give them a name?"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="NicknameLineEdit" type="LineEdit" parent="GameOverScreen/VBoxContainer/NicknameEditor/VBoxContainer" unique_id=1599183688]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_byonu")
+placeholder_text = "BLEH"
+clear_button_enabled = true
+
+[node name="NicknameConfirmButton" type="Button" parent="GameOverScreen/VBoxContainer/NicknameEditor/VBoxContainer" unique_id=1098155157]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("8_3o6be")
+text = "CONFIRM"
 
 [connection signal="attack" from="OpponentBoard" to="." method="_on_opponent_board_attack"]
 [connection signal="died" from="OpponentBoard" to="." method="_on_opponent_board_died"]
@@ -107,3 +178,9 @@ alignment = 1
 [connection signal="attack" from="PlayerBoard" to="." method="_on_player_board_attack"]
 [connection signal="died" from="PlayerBoard" to="." method="_on_player_board_died"]
 [connection signal="ended_turn" from="PlayerBoard" to="." method="_on_player_board_ended_turn"]
+[connection signal="run" from="PlayerBoard" to="." method="_on_player_board_run"]
+[connection signal="submit_nickname" from="GameOverScreen" to="." method="_on_game_over_screen_submit_nickname"]
+[connection signal="pressed" from="GameOverScreen/VBoxContainer/DropCaptureSelector/DropsButton" to="." method="_on_drops_button_pressed"]
+[connection signal="pressed" from="GameOverScreen/VBoxContainer/DropCaptureSelector/CaptureButton" to="." method="_on_capture_button_pressed"]
+[connection signal="text_submitted" from="GameOverScreen/VBoxContainer/NicknameEditor/VBoxContainer/NicknameLineEdit" to="GameOverScreen" method="_on_nickname_line_edit_text_submitted"]
+[connection signal="pressed" from="GameOverScreen/VBoxContainer/NicknameEditor/VBoxContainer/NicknameConfirmButton" to="GameOverScreen" method="_on_nickname_confirm_button_pressed"]

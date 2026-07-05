@@ -1,19 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://q6xa04342bcp"]
+[gd_scene format=3 uid="uid://q6xa04342bcp"]
 
 [ext_resource type="Script" uid="uid://cby6hqsevtqff" path="res://world/monster_spawner.gd" id="1_nhqno"]
 [ext_resource type="PackedScene" uid="uid://bpkbr2dlfsua1" path="res://world/monster_character.tscn" id="1_pr6bb"]
 
-[node name="MonsterSpawner" type="Node2D" node_paths=PackedStringArray("spawn_delay_timer", "monster_container")]
+[node name="MonsterSpawner" type="Node2D" unique_id=1977688152 node_paths=PackedStringArray("spawn_delay_timer", "monster_container")]
 script = ExtResource("1_nhqno")
+spawn_range = 100.0
 monster_scene = ExtResource("1_pr6bb")
 spawn_limit = 2
 spawn_delay_timer = NodePath("SpawnDelayTimer")
 spawn_delay = 10.0
 monster_container = NodePath("MonsterContainer")
 
-[node name="SpawnDelayTimer" type="Timer" parent="."]
+[node name="SpawnDelayTimer" type="Timer" parent="." unique_id=1122054961]
 one_shot = true
 
-[node name="MonsterContainer" type="Node2D" parent="."]
+[node name="MonsterContainer" type="Node2D" parent="." unique_id=199325566]
 
 [connection signal="timeout" from="SpawnDelayTimer" to="." method="_on_spawn_delay_timer_timeout"]

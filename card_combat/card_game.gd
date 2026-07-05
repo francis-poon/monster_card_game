@@ -1,28 +1,28 @@
 class_name CardGame
 extends Control
 
-signal battle_result(result: bool, drops: Array)
+signal battle_result(result: bool, drops: Array, tamed_monster: TamedMonsterData)
 
 @export var player_board: PlayerBoard
 @export var opponent_board: OpponentBoard
-@export var game_over_screen: Control
-@export var game_over_label: Label
-@export var drops_display: Control
-@export var drops_container: HBoxContainer
+@export var game_over_screen: GameOverScreen
 @export var draggable_card_scene: PackedScene
+
+var wild_monster: WildMonsterData
 
 func _ready():
 	if not get_tree().root.get_child(1) == self:
 		return
 	print("Card game running in test mode")
-	var player_deck_data = ResourceLoader.load("res://resources/player_deck.tres")
-	var opponent_deck_data = ResourceLoader.load("res://resources/monster_deck.tres")
-	new_game(PlayableDeck.new(player_deck_data), PlayableDeck.new(opponent_deck_data))
+	var player_monster_data: TamedMonsterData = ResourceLoader.load("res://resources/tamed_monsters/player_monster_data.tres")
+	var opponent_monster_data: WildMonsterData = ResourceLoader.load("res://resources/monster_index/monster_001.tres")
+	new_game(player_monster_data, opponent_monster_data)
 
-func new_game(p_player_deck: PlayableDeck, p_opponent_deck: PlayableDeck):
+func new_game(p_player_mosnter: TamedMonsterData, p_opponent_monster: WildMonsterData):
+	wild_monster = p_opponent_monster
 	game_over_screen.hide()
-	player_board.start_game(p_player_deck, 3)
-	opponent_board.start_game(p_opponent_deck, 3)
+	player_board.start_game(p_player_mosnter)
+	opponent_board.start_game(p_opponent_monster)
 	player_board.start_turn()
 
 
@@ -34,11 +34,9 @@ func _on_player_board_attack(damage: int) -> void:
 
 func _on_player_board_died() -> void:
 	player_board.end_game()
-	drops_display.hide()
-	game_over_label.text = "DEFEAT"
-	game_over_screen.show()
+	game_over_screen.defeat()
 	await get_tree().create_timer(2).timeout
-	battle_result.emit(false, [])
+	battle_result.emit(false, [], null)
 
 
 func _on_opponent_board_ended_turn() -> void:
@@ -48,14 +46,28 @@ func _on_opponent_board_attack(damage: int) -> void:
 	player_board.take_damage(damage)
 
 func _on_opponent_board_died() -> void:
-	var card_drop_val: int = randi_range(0,4)
+	var card_drop_val: int = opponent_board.roll_drop_table()[0]
 	player_board.end_game()
-	game_over_label.text = "VICTORY"
-	for child in drops_container.get_children():
-		child.queue_free()
-	var card_drop: DraggableCard = draggable_card_scene.instantiate()
-	card_drop = card_drop.construct(Globals.get_card(card_drop_val), true, false)
-	drops_container.add_child(card_drop)
-	game_over_screen.show()
+	game_over_screen.victory()
+
+
+func _on_drops_button_pressed() -> void:
+	var drops: Array = opponent_board.roll_drop_table()
+	game_over_screen.display_drops(drops)
 	await get_tree().create_timer(2).timeout
-	battle_result.emit(true, [card_drop_val])
+	battle_result.emit(true, drops, null)
+
+func _on_capture_button_pressed() -> void:
+	game_over_screen.display_capture(wild_monster)
+
+
+func _on_game_over_screen_submit_nickname(nickname: String) -> void:
+	var tamed_monster: TamedMonsterData = wild_monster.to_tamed_monster_data(nickname)
+	battle_result.emit(true, [], tamed_monster)
+
+
+func _on_player_board_run() -> void:
+	player_board.end_game()
+	game_over_screen.run()
+	await get_tree().create_timer(2).timeout
+	battle_result.emit(false, [], null)

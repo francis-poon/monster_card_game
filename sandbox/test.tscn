@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bef1iwpkcqc6o"]
+
+[ext_resource type="Script" uid="uid://h0w5buwn8de5" path="res://sandbox/test.gd" id="1_syuel"]
+
+[node name="Test" type="Node2D" unique_id=138171437]
+script = ExtResource("1_syuel")

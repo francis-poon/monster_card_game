@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="DeckData" load_steps=2 format=3 uid="uid://dks16j0pfmm2t"]
-
-[ext_resource type="Script" uid="uid://dle6e8t0bdmep" path="res://resources/deck_data.gd" id="1_sxq3x"]
-
-[resource]
-script = ExtResource("1_sxq3x")
-cards = [2, 2, 3, 4, 0, 0, 0, 0, 1, 1]
-metadata/_custom_type_script = "uid://dle6e8t0bdmep"

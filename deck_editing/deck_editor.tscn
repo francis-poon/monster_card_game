@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://dh2plyj1m6s8a"]
+
+[ext_resource type="Script" uid="uid://cili43k26fx3c" path="res://deck_editing/deck_editor.gd" id="1_7mn52"]
+[ext_resource type="PackedScene" uid="uid://pta84vb7ohes" path="res://deck_editing/deck_display.tscn" id="2_rj4fv"]
+[ext_resource type="Theme" uid="uid://ckak6juk5j6f2" path="res://themes/menu_margin_container.tres" id="3_bepm4"]
+[ext_resource type="Theme" uid="uid://cw5tc68q7kjfq" path="res://themes/button.tres" id="3_ijyt8"]
+
+[node name="DeckEditor" type="Control" unique_id=1655892251 node_paths=PackedStringArray("inventory_display", "deck_display")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7mn52")
+inventory_display = NodePath("VBoxContainer/HBoxContainer/InventoryDisplay")
+deck_display = NodePath("VBoxContainer/HBoxContainer/DeckDisplay")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1538771941]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=10216531]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = -16
+
+[node name="InventoryDisplay" parent="VBoxContainer/HBoxContainer" unique_id=1787536738 instance=ExtResource("2_rj4fv")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DeckDisplay" parent="VBoxContainer/HBoxContainer" unique_id=1697640982 instance=ExtResource("2_rj4fv")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=183035160]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer" unique_id=1794826313]
+layout_mode = 2
+color = Color(1, 0.99607843, 0.8392157, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer" unique_id=59488943]
+layout_mode = 2
+theme = ExtResource("3_bepm4")
+theme_override_constants/margin_top = 8
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/MarginContainer/MarginContainer" unique_id=2030566466]
+layout_mode = 2
+alignment = 2
+
+[node name="SaveButton" type="Button" parent="VBoxContainer/MarginContainer/MarginContainer/HBoxContainer2" unique_id=1156448399]
+layout_mode = 2
+size_flags_horizontal = 8
+focus_mode = 3
+theme = ExtResource("3_ijyt8")
+text = "SAVE"
+
+[node name="CloseButton" type="Button" parent="VBoxContainer/MarginContainer/MarginContainer/HBoxContainer2" unique_id=1156493042]
+layout_mode = 2
+size_flags_horizontal = 8
+focus_mode = 3
+theme = ExtResource("3_ijyt8")
+text = "CLOSE"
+
+[connection signal="card_pressed" from="VBoxContainer/HBoxContainer/InventoryDisplay" to="." method="_on_inventory_display_card_pressed"]
+[connection signal="card_pressed" from="VBoxContainer/HBoxContainer/DeckDisplay" to="." method="_on_deck_display_card_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/MarginContainer/HBoxContainer2/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/MarginContainer/HBoxContainer2/CloseButton" to="." method="_on_close_button_pressed"]

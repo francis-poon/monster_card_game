@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="card_game"
 run/main_scene="uid://dcyslt11yemyv"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -21,11 +25,14 @@ Globals="*res://utils/globals.gd"
 
 [display]
 
+window/size/viewport_width=1024
+window/size/viewport_height=576
 window/stretch/mode="viewport"
 
 [global_group]
 
 pausable=""
+player=""
 
 [input]
 
@@ -62,3 +69,4 @@ move_down={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"

@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://pta84vb7ohes"]
+
+[ext_resource type="Script" uid="uid://cnycxv13e6ycx" path="res://deck_editing/deck_display.gd" id="1_rmyl4"]
+[ext_resource type="PackedScene" uid="uid://px84iwbjkhuq" path="res://deck_editing/inventory_card.tscn" id="2_l6dlt"]
+[ext_resource type="Theme" uid="uid://cg2hufr0suof8" path="res://themes/deck_display.tres" id="3_8vt74"]
+[ext_resource type="Theme" uid="uid://ckak6juk5j6f2" path="res://themes/menu_margin_container.tres" id="3_hho8g"]
+
+[node name="DeckDisplay" type="Control" unique_id=1787536738 node_paths=PackedStringArray("card_grid")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rmyl4")
+card_grid = NodePath("MarginContainer/MarginContainer/ScrollContainer/GridContainer")
+card_scene = ExtResource("2_l6dlt")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1096042555]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.99607843, 0.8392157, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1907170790]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_hho8g")
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer" unique_id=1101634074]
+layout_mode = 2
+color = Color(0.11764706, 0.1254902, 0.14509805, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=890246516]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/MarginContainer" unique_id=1118948989]
+layout_mode = 2
+theme = ExtResource("3_8vt74")
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/MarginContainer/ScrollContainer" unique_id=1499198795]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 4
