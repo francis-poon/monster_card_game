@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://cg2hufr0suof8"]
+[gd_resource type="Theme" format=3 uid="uid://cg2hufr0suof8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_byonu"]
 
@@ -6,11 +6,14 @@
 bg_color = Color(1, 0.99607843, 0.8392157, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0i7eo"]
-content_margin_left = 5.0
-content_margin_right = 5.0
+content_margin_left = 4.0
+content_margin_right = 4.0
 
 [resource]
+ScrollContainer/constants/scrollbar_h_separation = 0
 ScrollContainer/styles/panel = SubResource("StyleBoxEmpty_byonu")
+VScrollBar/constants/padding_left = 8
+VScrollBar/constants/padding_right = 0
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_0i7eo")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_0i7eo")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_0i7eo")

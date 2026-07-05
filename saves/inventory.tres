@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="DeckData" format=3]
+
+[ext_resource type="Script" path="res://resources/deck_data.gd" id="1_j6v23"]
+
+[resource]
+script = ExtResource("1_j6v23")
+cards = [3, 0, 4, 3, 0, 0, 0, 0, 1, 1, 2, 3, 4, 0, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0]

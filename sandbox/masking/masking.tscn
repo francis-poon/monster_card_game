@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dq068q57qrfiq"]
+
+[ext_resource type="Texture2D" uid="uid://dia8k2uy0x54w" path="res://sandbox/masking/monster_base.png" id="1_gl3yc"]
+[ext_resource type="Texture2D" uid="uid://cy2pd1q85xts" path="res://sandbox/masking/monster_color_mask.png" id="2_cgkjf"]
+
+[node name="Masking" type="Control" unique_id=980310183]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=573408367]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_gl3yc")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=831070204]
+modulate = Color(0.11764706, 0.49411765, 0.42352942, 1)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_cgkjf")

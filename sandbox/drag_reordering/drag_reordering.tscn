@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://c0sjwttxm7gul"]
+
+[ext_resource type="Script" uid="uid://bn0v7wughev6m" path="res://sandbox/drag_reordering/reorder_list.gd" id="1_3tb44"]
+[ext_resource type="Script" uid="uid://cgyv7wdjqevro" path="res://sandbox/drag_reordering/drag_target.gd" id="2_q3lko"]
+
+[node name="DragReordering" type="Control" unique_id=1149413566]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=815729144]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer2" unique_id=1348624613]
+layout_mode = 2
+color = Color(0.11764706, 0.49411765, 0.42352942, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2" unique_id=647309026]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/MarginContainer" unique_id=520186156]
+layout_mode = 2
+script = ExtResource("1_3tb44")
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer2/MarginContainer/HBoxContainer" unique_id=2016239693]
+custom_minimum_size = Vector2(71.56, 40)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="MarginContainer2/MarginContainer/HBoxContainer/ColorRect" unique_id=1333256146]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer2/MarginContainer/HBoxContainer" unique_id=1140676566]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="MarginContainer2/MarginContainer/HBoxContainer/ColorRect2" unique_id=1252460282]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer2/MarginContainer/HBoxContainer" unique_id=1909489853]
+custom_minimum_size = Vector2(31.155, 40)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="MarginContainer2/MarginContainer/HBoxContainer/ColorRect3" unique_id=1653173697]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect4" type="ColorRect" parent="MarginContainer2/MarginContainer/HBoxContainer" unique_id=639704090]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="MarginContainer2/MarginContainer/HBoxContainer/ColorRect4" unique_id=1867228656]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DragTarget" type="ColorRect" parent="MarginContainer2/MarginContainer/HBoxContainer" unique_id=3902225]
+custom_minimum_size = Vector2(21.375, 40)
+layout_mode = 2
+mouse_filter = 1
+color = Color(1, 0, 0, 1)
+script = ExtResource("2_q3lko")
+
+[node name="DragTarget2" type="ColorRect" parent="MarginContainer2/MarginContainer/HBoxContainer" unique_id=1177878169]
+custom_minimum_size = Vector2(56.415, 40)
+layout_mode = 2
+mouse_filter = 1
+color = Color(0.8162408, 0.40160578, 9.62615e-07, 1)
+script = ExtResource("2_q3lko")

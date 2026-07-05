@@ -5,19 +5,24 @@ signal ended_turn
 signal died
 signal attack(damage: int)
 
-var MAX_HEALTH: int = 5
-
 @export var card_hand: CardHand
 @export var card_scene: PackedScene
 @export var play_field: PlayField
-@export var health_bar: TiledProgressBar
+@export var health_ui: HealthUI
 @export var armor_value_label: Label
 @export var shield_value_label: Label
+@export var monster_sprite_base: TextureRect
+@export var monster_sprite_color_mask: TextureRect
+@export var name_label: Label
 
+var max_health: int:
+	set(value):
+		max_health = value
+		health_ui.max_health = max_health
 var health: int:
 	set(value):
 		health = value
-		health_bar.value = value
+		health_ui.health = value
 var shield: int:
 	set(value):
 		shield = value
@@ -27,25 +32,30 @@ var armor: int:
 		armor = value
 		armor_value_label.text = str(value)
 var deck: PlayableDeck = PlayableDeck.new()
+var draw_size: int
 
 
-func start_game(p_deck: PlayableDeck, start_hand_size: int):
-	deck = p_deck
+func start_game(p_monster_data: MonsterData):
+	deck = PlayableDeck.new(p_monster_data.deck)
 	deck.shuffle()
-	health_bar.max_value = MAX_HEALTH
-	health = MAX_HEALTH
+	max_health = p_monster_data.max_health
+	health = max_health
 	shield = 0
 	armor = 0
 	card_hand.clear()
-	play_field.play_card.connect(_on_play_field_play_card)
-	draw_cards(start_hand_size)
+	if not play_field.play_card.is_connected(_on_play_field_play_card):
+		play_field.play_card.connect(_on_play_field_play_card)
+	draw_size = p_monster_data.draw_size
+	draw_cards(p_monster_data.starting_hand_size)
+	monster_sprite_base.texture = ResourceLoader.load(Globals.get_sprite_base_path(p_monster_data.monster_id))
+	monster_sprite_color_mask.texture = ResourceLoader.load(Globals.get_sprite_color_mask_path(p_monster_data.monster_id))
 
 func end_game():
 	pass
 
 func start_turn():
 	shield = 0
-	draw_cards(2)
+	draw_cards(draw_size)
 
 func end_turn():
 	ended_turn.emit()
@@ -60,26 +70,30 @@ func draw_cards(draw_count: int):
 
 func take_damage(damage: int):
 	var remaining_damage: int = damage
-	if armor > 0:
-		remaining_damage -= armor
-		if randi_range(1, damage + 2*armor) <= damage:
-			armor = 0
-		if remaining_damage <= 0:
-			return
 	if shield > 0:
 		if shield >= remaining_damage:
 			shield -= remaining_damage
 			return
 		remaining_damage -= shield
 		shield = 0
+	
+	if armor > 0:
+		if randi_range(1, remaining_damage + 2*armor) <= remaining_damage:
+			remaining_damage -= armor
+			armor = 0
+		else:
+			remaining_damage -= armor
+		if remaining_damage <= 0:
+			return
+	
 	health -= remaining_damage
 	if health <= 0:
 		died.emit()
 
 func heal(heal_value: int):
 	health += heal_value
-	if health > MAX_HEALTH:
-		health = MAX_HEALTH
+	if health > max_health:
+		health = max_health
 
 func set_shield(shield_value: int):
 	shield += shield_value

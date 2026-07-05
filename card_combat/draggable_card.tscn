@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0172sbylhkd5"]
+[gd_scene format=3 uid="uid://d0172sbylhkd5"]
 
 [ext_resource type="Script" uid="uid://cdvbn3km86muu" path="res://card_combat/draggable_card.gd" id="1_2cuhh"]
 [ext_resource type="Texture2D" uid="uid://ujrf0qcxcvag" path="res://assets/ui_icons.png" id="2_8ei37"]
@@ -16,7 +16,7 @@ region = Rect2(0, 6, 13, 16)
 atlas = ExtResource("2_8ei37")
 region = Rect2(13.592027, 6.6290236, 12.407973, 15.370976)
 
-[node name="DraggableCard" type="MarginContainer" node_paths=PackedStringArray("face", "card_text")]
+[node name="DraggableCard" type="MarginContainer" unique_id=856235380 node_paths=PackedStringArray("face", "card_text")]
 custom_minimum_size = Vector2(120, 0)
 anchors_preset = 8
 anchor_left = 0.5
@@ -37,13 +37,13 @@ front_texture = SubResource("AtlasTexture_q5obu")
 back_texture = SubResource("AtlasTexture_fpac0")
 card_text = NodePath("Label")
 
-[node name="Face" type="TextureRect" parent="."]
+[node name="Face" type="TextureRect" parent="." unique_id=569317553]
 layout_mode = 2
 texture = SubResource("AtlasTexture_e484p")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1572481598]
 layout_mode = 2
 theme = ExtResource("3_obcm6")
 text = "1"

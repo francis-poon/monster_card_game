@@ -1,0 +1,188 @@
+[gd_scene format=3 uid="uid://dthcme3qf53an"]
+
+[ext_resource type="Script" uid="uid://q7we2y1xgrgd" path="res://deck_editing/tamed_monster_selector.gd" id="1_yd70l"]
+[ext_resource type="PackedScene" uid="uid://ddykeal4l4s6h" path="res://deck_editing/tamed_monster_display_card.tscn" id="2_1h4ar"]
+[ext_resource type="Theme" uid="uid://cg2hufr0suof8" path="res://themes/deck_display.tres" id="3_3dxk7"]
+[ext_resource type="Theme" uid="uid://ckak6juk5j6f2" path="res://themes/menu_margin_container.tres" id="3_bgo75"]
+[ext_resource type="PackedScene" uid="uid://pta84vb7ohes" path="res://deck_editing/deck_display.tscn" id="3_udip8"]
+[ext_resource type="Theme" uid="uid://d152fmdo8pu7m" path="res://themes/description_label.tres" id="4_gro4v"]
+[ext_resource type="Theme" uid="uid://cw5tc68q7kjfq" path="res://themes/button.tres" id="5_3pscs"]
+[ext_resource type="Script" uid="uid://db0hepyv4vh8c" path="res://deck_editing/monster_display_card_container.gd" id="6_bgo75"]
+[ext_resource type="Theme" uid="uid://csly7nq8n54pg" path="res://themes/header_label.tres" id="6_gmrpb"]
+
+[node name="TamedMonsterSelector" type="Control" unique_id=530506606 node_paths=PackedStringArray("monster_display_card_container", "monster_name_label", "monster_type_label", "monster_stats_label", "deck_display")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yd70l")
+tamed_monster_display_card_scene = ExtResource("2_1h4ar")
+monster_display_card_container = NodePath("HBoxContainer/MarginContainer/MarginContainer/MarginContainer/ScrollContainer/MonsterDisplayCardContainer")
+monster_name_label = NodePath("HBoxContainer/InfoBox/MarginContainer/VBoxContainer/MonsterNameLabel")
+monster_type_label = NodePath("HBoxContainer/InfoBox/MarginContainer/VBoxContainer/MonsterTypeLabel")
+monster_stats_label = NodePath("HBoxContainer/InfoBox/MarginContainer/VBoxContainer/MonsterStatsLabel")
+deck_display = NodePath("HBoxContainer/MarginContainer2/VBoxContainer/DeckDisplay")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1472269831]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.99607843, 0.8392157, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=33034189]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=1666392158]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/MarginContainer" unique_id=1922772038]
+layout_mode = 2
+theme = ExtResource("3_bgo75")
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer2" unique_id=694864614]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_gro4v")
+text = "PARTY"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer" unique_id=679597632]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_bgo75")
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/MarginContainer/MarginContainer" unique_id=1082023163]
+layout_mode = 2
+color = Color(0.11764706, 0.1254902, 0.14509805, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer/MarginContainer" unique_id=874331055]
+custom_minimum_size = Vector2(176, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/MarginContainer/MarginContainer/MarginContainer" unique_id=1122367908]
+layout_mode = 2
+theme = ExtResource("3_3dxk7")
+
+[node name="MonsterDisplayCardContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/MarginContainer/MarginContainer/ScrollContainer" unique_id=255664171]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+script = ExtResource("6_bgo75")
+
+[node name="TamedMonsterDisplayCard" parent="HBoxContainer/MarginContainer/MarginContainer/MarginContainer/ScrollContainer/MonsterDisplayCardContainer" unique_id=1710032026 instance=ExtResource("2_1h4ar")]
+layout_mode = 2
+
+[node name="TamedMonsterDisplayCard2" parent="HBoxContainer/MarginContainer/MarginContainer/MarginContainer/ScrollContainer/MonsterDisplayCardContainer" unique_id=1184426887 instance=ExtResource("2_1h4ar")]
+layout_mode = 2
+
+[node name="TamedMonsterDisplayCard3" parent="HBoxContainer/MarginContainer/MarginContainer/MarginContainer/ScrollContainer/MonsterDisplayCardContainer" unique_id=2077887581 instance=ExtResource("2_1h4ar")]
+layout_mode = 2
+
+[node name="InfoBox" type="ColorRect" parent="HBoxContainer" unique_id=1635286922]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 0.99607843, 0.8392157, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/InfoBox" unique_id=895544588]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_bgo75")
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/InfoBox/MarginContainer" unique_id=1296094972]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MonsterNameLabel" type="Label" parent="HBoxContainer/InfoBox/MarginContainer/VBoxContainer" unique_id=1542329498]
+layout_mode = 2
+theme = ExtResource("6_gmrpb")
+text = "Name"
+
+[node name="MonsterTypeLabel" type="Label" parent="HBoxContainer/InfoBox/MarginContainer/VBoxContainer" unique_id=226485766]
+layout_mode = 2
+theme = ExtResource("4_gro4v")
+text = "type"
+
+[node name="Padding" type="Control" parent="HBoxContainer/InfoBox/MarginContainer/VBoxContainer" unique_id=1099032925]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="MonsterStatsLabel" type="Label" parent="HBoxContainer/InfoBox/MarginContainer/VBoxContainer" unique_id=629718352]
+layout_mode = 2
+theme = ExtResource("4_gro4v")
+text = "Stats"
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer" unique_id=1582788029]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2" unique_id=2063356270]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 0
+
+[node name="DeckDisplay" parent="HBoxContainer/MarginContainer2/VBoxContainer" unique_id=1787536738 instance=ExtResource("3_udip8")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer" unique_id=2060264572]
+layout_mode = 2
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer" unique_id=598477703]
+layout_mode = 2
+alignment = 2
+
+[node name="EditButton" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1281969385]
+layout_mode = 2
+theme = ExtResource("5_3pscs")
+text = "EDIT"
+
+[node name="CloseButton" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1846600840]
+layout_mode = 2
+theme = ExtResource("5_3pscs")
+text = "CLOSE"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer2" unique_id=397437062]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("3_bgo75")
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/MarginContainer" unique_id=473352794]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("4_gro4v")
+text = "DECK"
+
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/EditButton" to="." method="_on_edit_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]

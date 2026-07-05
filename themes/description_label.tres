@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3 uid="uid://d152fmdo8pu7m"]
+
+[ext_resource type="FontFile" uid="uid://bo5patjmbqk08" path="res://assets/Pixeloid_Font_0_5/OpenType (.otf)/PixeloidSans.otf" id="1_tvchn"]
+
+[resource]
+Label/colors/font_color = Color(0.11764706, 0.1254902, 0.14509805, 1)
+Label/font_sizes/font_size = 18
+Label/fonts/font = ExtResource("1_tvchn")

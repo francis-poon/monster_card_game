@@ -37,7 +37,7 @@ func hide_card():
 func disable_drag():
 	is_draggable = false
 
-func enable_drat():
+func enable_drag():
 	is_draggable = true
 
 func _update_card_face():
@@ -55,7 +55,7 @@ func get_preview() -> Control:
 	preview_card.add_child(card_text.duplicate())
 	return preview_card
 
-func _get_drag_data(at_position: Vector2) -> Variant:
+func _get_drag_data(_at_position: Vector2) -> Variant:
 	if not is_draggable:
 		return null
 	set_drag_preview(get_preview())

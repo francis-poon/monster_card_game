@@ -1,23 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpgph0hje8yb7"]
+[gd_scene format=3 uid="uid://cpgph0hje8yb7"]
 
 [ext_resource type="Script" uid="uid://3vcfurej4g1y" path="res://world/player_character.gd" id="1_2gpuf"]
-[ext_resource type="Texture2D" uid="uid://c3kgkf1ubvrcl" path="res://assets/monster_sprites.png" id="2_p4qmb"]
+[ext_resource type="Texture2D" uid="uid://gcxew3v281ir" path="res://assets/monster_sprites/000_base.png" id="2_b5xsv"]
+[ext_resource type="Texture2D" uid="uid://ux1kjvm8ceox" path="res://assets/monster_sprites/000_color_mask.png" id="3_0f5q7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p4qmb"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mmw4h"]
-atlas = ExtResource("2_p4qmb")
-region = Rect2(0, 0, 20, 21)
-
-[node name="PlayerCharacter" type="CharacterBody2D"]
+[node name="PlayerCharacter" type="CharacterBody2D" unique_id=1899331257 node_paths=PackedStringArray("sprite_base", "sprite_color_mask")]
 collision_mask = 2
 script = ExtResource("1_2gpuf")
+sprite_base = NodePath("SpriteBase2D")
+sprite_color_mask = NodePath("SpriteColorMask2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=91498358]
 shape = SubResource("RectangleShape2D_p4qmb")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_mmw4h")
+[node name="SpriteBase2D" type="Sprite2D" parent="." unique_id=1152464490]
+texture = ExtResource("2_b5xsv")
+flip_h = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4.025, 4.025)
+[node name="SpriteColorMask2D" type="Sprite2D" parent="." unique_id=1049108551]
+modulate = Color(0.11764706, 0.49411765, 0.42352942, 1)
+texture = ExtResource("3_0f5q7")
+flip_h = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=364059758]
+zoom = Vector2(4.026, 4.026)

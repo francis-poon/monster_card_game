@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="WildMonsterData" format=3 uid="uid://cpbtcsc775top"]
+
+[ext_resource type="Script" uid="uid://dle6e8t0bdmep" path="res://resources/deck_data.gd" id="1_xacbv"]
+[ext_resource type="Script" uid="uid://cpcwevfmu370g" path="res://resources/wild_monster_data.gd" id="2_xhxig"]
+
+[sub_resource type="Resource" id="Resource_xhxig"]
+script = ExtResource("1_xacbv")
+cards = [2, 2, 3, 4, 0, 0, 0, 0, 1, 1]
+metadata/_custom_type_script = "uid://dle6e8t0bdmep"
+
+[resource]
+script = ExtResource("2_xhxig")
+drop_table = [0, 0, 1]
+monster_id = 4
+deck = SubResource("Resource_xhxig")
+name = "Chippy"
+deck_size = 10
+starting_hand_size = 3
+draw_size = 2
+max_health = 5
+metadata/_custom_type_script = "uid://cpcwevfmu370g"
