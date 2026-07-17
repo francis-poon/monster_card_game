@@ -16,6 +16,7 @@ var kill_count: int:
 var is_combat_cooldown: bool
 
 func _ready():
+	Globals.init_save_dir()
 	kill_count = 0
 	card_game.hide()
 	card_game.process_mode = Node.PROCESS_MODE_DISABLED
@@ -24,9 +25,12 @@ func _ready():
 	open_tamed_monster_selector_button.show()
 	inventory = Globals.load_inventory()
 	is_combat_cooldown = false
+	
+	if Globals.player_party.party_uids.size() <= 0:
+		Globals.load_starter()
+	
 	var player: PlayerCharacter = get_tree().get_first_node_in_group("player")
 	player.load_monster_sprite(Globals.get_tamed_monster(Globals.player_party.party_uids[0]).monster_id)
-	#inventory.cards = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,11,1,1,1,1,1,1,1,11,1,1,1,1]
 
 
 func _on_overworld_start_battle(monster: MonsterCharacter) -> void:
@@ -68,10 +72,11 @@ func _on_card_game_battle_result(result: bool, drops: Array, tamed_monster: Tame
 			Globals.save_tamed_monster(tamed_monster)
 	_end_battle()
 
-func _on_deck_editor_save(p_inventory: DeckData, p_deck: DeckData) -> void:
+func _on_deck_editor_save(p_inventory: DeckData, p_untamed_deck: DeckData, p_deck: DeckData) -> void:
 	inventory = p_inventory
 	var tamed_monster: TamedMonsterData = tamed_monster_selector.get_selected_monster()
 	tamed_monster.deck = p_deck
+	tamed_monster.untamed_deck = p_untamed_deck
 	Globals.save_tamed_monster(tamed_monster)
 	Globals.save_inventory(inventory)
 	
@@ -84,7 +89,13 @@ func _on_deck_editor_close() -> void:
 
 func _on_tamed_monster_selector_edit_tamed_monster(tamed_monster: TamedMonsterData) -> void:
 	tamed_monster_selector.hide()
-	deck_editor.load_deck(inventory, tamed_monster.deck)
+	deck_editor.load_deck(
+		inventory,
+		tamed_monster.untamed_deck,
+		tamed_monster.deck,
+		tamed_monster.deck_size,
+		tamed_monster.deck_cost_capacity,
+		tamed_monster.card_cost_modifiers)
 	deck_editor.show()
 
 

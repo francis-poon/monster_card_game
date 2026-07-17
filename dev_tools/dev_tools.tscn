@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://bdfc478dgmqlq"]
+
+[ext_resource type="Theme" uid="uid://cw5tc68q7kjfq" path="res://themes/button.tres" id="1_1drny"]
+[ext_resource type="Script" uid="uid://cfuwyyc3yvwxu" path="res://dev_tools/dev_tools.gd" id="1_55tkn"]
+[ext_resource type="PackedScene" uid="uid://bowk3lgxw2n2w" path="res://dev_tools/dt_deck_editor.tscn" id="2_55tkn"]
+[ext_resource type="PackedScene" uid="uid://c1tn3ldwrqpr4" path="res://dev_tools/dt_monster_index_selector.tscn" id="3_h8tdc"]
+[ext_resource type="PackedScene" uid="uid://dtqb24dm5fdjx" path="res://dev_tools/dt_cost_modifier_editor.tscn" id="5_h8tdc"]
+
+[node name="DevTools" type="Node2D" unique_id=1649917752 node_paths=PackedStringArray("tool_selector", "deck_editor", "monster_index_selector", "cost_modifier_editor")]
+script = ExtResource("1_55tkn")
+tool_selector = NodePath("CanvasLayer/ToolSelector")
+deck_editor = NodePath("CanvasLayer/DtDeckEditor")
+monster_index_selector = NodePath("CanvasLayer/DtMonsterIndexSelector")
+cost_modifier_editor = NodePath("CanvasLayer/DtCostModifierEditor")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1103813529]
+
+[node name="ToolSelector" type="Control" parent="CanvasLayer" unique_id=1088904092]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/ToolSelector" unique_id=134347760]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.99607843, 0.8392157, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ToolSelector" unique_id=443205937]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="MonsterIndexEditorButton" type="Button" parent="CanvasLayer/ToolSelector/VBoxContainer" unique_id=553805001]
+layout_mode = 2
+theme = ExtResource("1_1drny")
+text = "Monster Index Editor"
+
+[node name="CardIndexEditorButton" type="Button" parent="CanvasLayer/ToolSelector/VBoxContainer" unique_id=1119422570]
+layout_mode = 2
+theme = ExtResource("1_1drny")
+text = "Card Index Editor"
+
+[node name="DtDeckEditor" parent="CanvasLayer" unique_id=1971058256 instance=ExtResource("2_55tkn")]
+visible = false
+
+[node name="DtMonsterIndexSelector" parent="CanvasLayer" unique_id=1333483330 instance=ExtResource("3_h8tdc")]
+visible = false
+
+[node name="DtCostModifierEditor" parent="CanvasLayer" unique_id=891855818 instance=ExtResource("5_h8tdc")]
+
+[connection signal="pressed" from="CanvasLayer/ToolSelector/VBoxContainer/MonsterIndexEditorButton" to="." method="_on_monster_index_editor_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ToolSelector/VBoxContainer/CardIndexEditorButton" to="." method="_on_card_index_editor_button_pressed"]
+[connection signal="close" from="CanvasLayer/DtDeckEditor" to="." method="_on_dt_deck_editor_close"]
+[connection signal="save" from="CanvasLayer/DtDeckEditor" to="." method="_on_dt_deck_editor_save"]
+[connection signal="close" from="CanvasLayer/DtMonsterIndexSelector" to="." method="_on_dt_monster_index_selector_close"]
+[connection signal="edit_monster_cost_modifiers" from="CanvasLayer/DtMonsterIndexSelector" to="." method="_on_dt_monster_index_selector_edit_monster_cost_modifiers"]
+[connection signal="edit_monster_deck" from="CanvasLayer/DtMonsterIndexSelector" to="." method="_on_dt_monster_index_selector_edit_monster_deck"]
+[connection signal="close" from="CanvasLayer/DtCostModifierEditor" to="." method="_on_dt_cost_modifier_editor_close"]
+[connection signal="save" from="CanvasLayer/DtCostModifierEditor" to="." method="_on_dt_cost_modifier_editor_save"]

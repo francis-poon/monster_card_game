@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bpnbpejlvmf8b"]
+
+[ext_resource type="Theme" uid="uid://ckak6juk5j6f2" path="res://themes/menu_margin_container.tres" id="1_2oteb"]
+[ext_resource type="Script" uid="uid://gev83fp3higl" path="res://dev_tools/dt_cost_modifier_display.gd" id="1_m130n"]
+[ext_resource type="PackedScene" uid="uid://sfwobllexd7y" path="res://dev_tools/dt_cost_modifier_edit_line.tscn" id="2_lskie"]
+
+[node name="CostModifierDisplay" type="Control" unique_id=2038292317 node_paths=PackedStringArray("edit_line_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m130n")
+cost_modifier_edit_line_scene = ExtResource("2_lskie")
+edit_line_container = NodePath("MarginContainer/MarginContainer/EditLineContainer")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=78131454]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.99607843, 0.8392157, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2145007432]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2oteb")
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer" unique_id=1307394521]
+layout_mode = 2
+color = Color(0.11764706, 0.1254902, 0.14509805, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=1165059964]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="EditLineContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer" unique_id=1508037799]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="DtCostModifierEditLine" parent="MarginContainer/MarginContainer/EditLineContainer" unique_id=293677866 instance=ExtResource("2_lskie")]
+layout_mode = 2
+
+[node name="DtCostModifierEditLine2" parent="MarginContainer/MarginContainer/EditLineContainer" unique_id=1502669457 instance=ExtResource("2_lskie")]
+layout_mode = 2

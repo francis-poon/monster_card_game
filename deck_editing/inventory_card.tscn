@@ -4,12 +4,21 @@
 [ext_resource type="Texture2D" uid="uid://ujrf0qcxcvag" path="res://assets/ui_icons.png" id="2_xee8q"]
 [ext_resource type="Theme" uid="uid://c0i0rkrgw6vlw" path="res://themes/inventory_card_button.tres" id="3_thmmd"]
 [ext_resource type="Theme" uid="uid://buvopmxxup0hl" path="res://themes/card_text.tres" id="4_xee8q"]
+[ext_resource type="Theme" uid="uid://d152fmdo8pu7m" path="res://themes/description_label.tres" id="5_ptmcc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02r74"]
+atlas = ExtResource("2_xee8q")
+region = Rect2(13, 6, 13, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uovsj"]
+atlas = ExtResource("2_xee8q")
+region = Rect2(52, 6, 13, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mvwgx"]
 atlas = ExtResource("2_xee8q")
 region = Rect2(13, 6, 13, 16)
 
-[node name="InventoryCard" type="Control" unique_id=1326092616 node_paths=PackedStringArray("card_text")]
+[node name="InventoryCard" type="Control" unique_id=1326092616 node_paths=PackedStringArray("card_text", "card_face_texture", "cost_label", "cost_label_backing")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,6 +29,14 @@ size_flags_horizontal = 3
 theme = ExtResource("3_thmmd")
 script = ExtResource("1_kc1qb")
 card_text = NodePath("CardText")
+card_face_texture = NodePath("CardFaceTextureRect")
+normal_card_face = SubResource("AtlasTexture_02r74")
+untamed_card_face = SubResource("AtlasTexture_uovsj")
+cost_label = NodePath("AspectRatioContainer/ColorRect/CostLabel")
+cost_label_backing = NodePath("AspectRatioContainer/ColorRect/MarginContainer/ColorRect")
+reduced_cost_color = Color(0.11764706, 0.49411765, 0.42352942, 1)
+increased_cost_color = Color(0.56078434, 0.09019608, 0.23137255, 1)
+default_cost_color = Color(0.11764706, 0.1254902, 0.14509805, 1)
 
 [node name="CardFaceTextureRect" type="TextureRect" parent="." unique_id=1662779646]
 layout_mode = 1
@@ -57,5 +74,43 @@ ratio = 0.8125
 layout_mode = 2
 focus_mode = 3
 theme = ExtResource("3_thmmd")
+
+[node name="ColorRect" type="ColorRect" parent="AspectRatioContainer" unique_id=2070645720]
+custom_minimum_size = Vector2(48, 32)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+color = Color(1, 0.99607843, 0.8392157, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer/ColorRect" unique_id=1736241109]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ColorRect" type="ColorRect" parent="AspectRatioContainer/ColorRect/MarginContainer" unique_id=437624390]
+layout_mode = 2
+color = Color(0.11764706, 0.1254902, 0.14509805, 1)
+
+[node name="CostLabel" type="Label" parent="AspectRatioContainer/ColorRect" unique_id=1841066267]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("5_ptmcc")
+theme_override_colors/font_color = Color(1, 0.99607843, 0.8392157, 1)
+text = "14"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="AspectRatioContainer/Button" to="." method="_on_button_pressed"]

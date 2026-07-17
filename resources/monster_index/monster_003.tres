@@ -5,17 +5,22 @@
 
 [sub_resource type="Resource" id="Resource_lj82m"]
 script = ExtResource("1_mjgwj")
-cards = [2, 2, 3, 4, 0, 0, 0, 0, 1, 1]
+cards = [1, 1, 1, 2, 2, 2, 5, 5]
 metadata/_custom_type_script = "uid://dle6e8t0bdmep"
 
 [resource]
 script = ExtResource("2_lj82m")
-drop_table = [0, 0, 1]
+drop_table = [2, 2, 8, 9]
 monster_id = 3
 deck = SubResource("Resource_lj82m")
 name = "Sprout"
-deck_size = 10
-starting_hand_size = 3
-draw_size = 2
-max_health = 5
+deck_size = 8
+starting_hand_size = 5
+draw_size = 1
+max_health = 6
+deck_cost_capacity = 12
+card_cost_modifiers = {
+8: -1,
+9: -2
+}
 metadata/_custom_type_script = "uid://cpcwevfmu370g"

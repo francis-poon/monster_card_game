@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://c1tn3ldwrqpr4"]
+
+[ext_resource type="Script" uid="uid://tkhcnlu7ybys" path="res://dev_tools/dt_monster_index_selector.gd" id="1_utg7w"]
+[ext_resource type="PackedScene" uid="uid://cgk12mgor4qek" path="res://dev_tools/dt_index_monster_display.tscn" id="2_5gt1d"]
+[ext_resource type="Script" uid="uid://n6en645kjhd0" path="res://dev_tools/dt_monster_display_card_container.gd" id="2_wy75d"]
+[ext_resource type="PackedScene" uid="uid://pta84vb7ohes" path="res://deck_editing/deck_display.tscn" id="3_5gt1d"]
+[ext_resource type="Theme" uid="uid://ckak6juk5j6f2" path="res://themes/menu_margin_container.tres" id="3_lm8mx"]
+[ext_resource type="Theme" uid="uid://cw5tc68q7kjfq" path="res://themes/button.tres" id="6_ck6k2"]
+
+[node name="DtMonsterIndexSelector" type="Control" unique_id=1333483330 node_paths=PackedStringArray("monster_display_card_container", "deck_display")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_utg7w")
+index_monster_display_scene = ExtResource("2_5gt1d")
+monster_display_card_container = NodePath("VBoxContainer/HBoxContainer/ColorRect/MarginContainer2/MarginContainer/VBoxContainer")
+deck_display = NodePath("VBoxContainer/HBoxContainer/DeckDisplay")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=297518825]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1135873598]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer" unique_id=1632127339]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 0.99607843, 0.8392157, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer/ColorRect" unique_id=1204995139]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_lm8mx")
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer/ColorRect/MarginContainer2" unique_id=918682852]
+layout_mode = 2
+color = Color(0.11764706, 0.1254902, 0.14509805, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/ColorRect/MarginContainer2" unique_id=2075911013]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/ColorRect/MarginContainer2/MarginContainer" unique_id=466650449]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+script = ExtResource("2_wy75d")
+
+[node name="DtIndexMonsterDisplay" parent="VBoxContainer/HBoxContainer/ColorRect/MarginContainer2/MarginContainer/VBoxContainer" unique_id=1633109492 instance=ExtResource("2_5gt1d")]
+layout_mode = 2
+
+[node name="DtIndexMonsterDisplay2" parent="VBoxContainer/HBoxContainer/ColorRect/MarginContainer2/MarginContainer/VBoxContainer" unique_id=239280960 instance=ExtResource("2_5gt1d")]
+layout_mode = 2
+
+[node name="DeckDisplay" parent="VBoxContainer/HBoxContainer" unique_id=1787536738 instance=ExtResource("3_5gt1d")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer" unique_id=1581619889]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+color = Color(1, 0.99607843, 0.8392157, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ColorRect" unique_id=425174113]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ColorRect/MarginContainer" unique_id=416391632]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="EditDeckButton" type="Button" parent="VBoxContainer/ColorRect/MarginContainer/HBoxContainer" unique_id=304206338]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_ck6k2")
+text = "EDIT DECK"
+
+[node name="EditCostModifierButton" type="Button" parent="VBoxContainer/ColorRect/MarginContainer/HBoxContainer" unique_id=638764345]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_ck6k2")
+text = "EDIT COST MOD"
+
+[node name="CloseButton" type="Button" parent="VBoxContainer/ColorRect/MarginContainer/HBoxContainer" unique_id=517196883]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_ck6k2")
+keep_pressed_outside = true
+text = "CLOSE"
+
+[connection signal="pressed" from="VBoxContainer/ColorRect/MarginContainer/HBoxContainer/EditDeckButton" to="." method="_on_edit_deck_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ColorRect/MarginContainer/HBoxContainer/EditCostModifierButton" to="." method="_on_edit_cost_modifier_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ColorRect/MarginContainer/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]

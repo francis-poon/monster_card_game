@@ -4,8 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://pta84vb7ohes" path="res://deck_editing/deck_display.tscn" id="2_rj4fv"]
 [ext_resource type="Theme" uid="uid://ckak6juk5j6f2" path="res://themes/menu_margin_container.tres" id="3_bepm4"]
 [ext_resource type="Theme" uid="uid://cw5tc68q7kjfq" path="res://themes/button.tres" id="3_ijyt8"]
+[ext_resource type="Theme" uid="uid://d152fmdo8pu7m" path="res://themes/description_label.tres" id="3_stex8"]
 
-[node name="DeckEditor" type="Control" unique_id=1655892251 node_paths=PackedStringArray("inventory_display", "deck_display")]
+[node name="DeckEditor" type="Control" unique_id=1655892251 node_paths=PackedStringArray("inventory_display", "untamed_card_display", "deck_display", "save_button", "deck_count_label", "deck_cost_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,8 +14,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7mn52")
-inventory_display = NodePath("VBoxContainer/HBoxContainer/InventoryDisplay")
-deck_display = NodePath("VBoxContainer/HBoxContainer/DeckDisplay")
+inventory_display = NodePath("VBoxContainer/HBoxContainer/VBoxContainer/InventoryDisplay")
+untamed_card_display = NodePath("VBoxContainer/HBoxContainer/VBoxContainer/UntamedCardDisplay")
+deck_display = NodePath("VBoxContainer/HBoxContainer/VBoxContainer2/DeckDisplay")
+save_button = NodePath("VBoxContainer/MarginContainer/MarginContainer/HBoxContainer2/SaveButton")
+deck_count_label = NodePath("VBoxContainer/HBoxContainer/VBoxContainer2/ColorRect/MarginContainer/HBoxContainer/DeckCountLabel")
+deck_cost_label = NodePath("VBoxContainer/HBoxContainer/VBoxContainer2/ColorRect/MarginContainer/HBoxContainer/DeckCostLabel")
+valid_deck_font_color = Color(0.11764706, 0.1254902, 0.14509805, 1)
+invalid_deck_font_color = Color(0.56078434, 0.09019608, 0.23137255, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1538771941]
 layout_mode = 1
@@ -30,13 +37,119 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = -16
 
-[node name="InventoryDisplay" parent="VBoxContainer/HBoxContainer" unique_id=1787536738 instance=ExtResource("2_rj4fv")]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=1163645878]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = -16
 
-[node name="DeckDisplay" parent="VBoxContainer/HBoxContainer" unique_id=1697640982 instance=ExtResource("2_rj4fv")]
+[node name="InventoryDisplay" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1787536738 instance=ExtResource("2_rj4fv")]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer/InventoryDisplay" unique_id=1999961490]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/InventoryDisplay/MarginContainer2" unique_id=1595239031]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("3_stex8")
+text = "INVENTORY"
+
+[node name="UntamedCardDisplay" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=448232878 instance=ExtResource("2_rj4fv")]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer/UntamedCardDisplay" unique_id=173423538]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/UntamedCardDisplay/MarginContainer2" unique_id=174236219]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("3_stex8")
+text = "UNTAMED CARDS"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=1423323925]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -16
+
+[node name="DeckDisplay" parent="VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1697640982 instance=ExtResource("2_rj4fv")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer2/DeckDisplay" unique_id=1205874396]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2/DeckDisplay/MarginContainer2" unique_id=787478637]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("3_stex8")
+text = "DECK"
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=543095608]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+color = Color(1, 0.99607843, 0.8392157, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer2/ColorRect" unique_id=1183809524]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer2/ColorRect/MarginContainer" unique_id=1856172220]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 2
+
+[node name="DeckCountLabel" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2/ColorRect/MarginContainer/HBoxContainer" unique_id=1510738201]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("3_stex8")
+text = "Cards: 0/10"
+vertical_alignment = 1
+
+[node name="DeckCostLabel" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2/ColorRect/MarginContainer/HBoxContainer" unique_id=640935791]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("3_stex8")
+text = "Capacity: 0/10"
+vertical_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=183035160]
 layout_mode = 2
@@ -68,7 +181,8 @@ focus_mode = 3
 theme = ExtResource("3_ijyt8")
 text = "CLOSE"
 
-[connection signal="card_pressed" from="VBoxContainer/HBoxContainer/InventoryDisplay" to="." method="_on_inventory_display_card_pressed"]
-[connection signal="card_pressed" from="VBoxContainer/HBoxContainer/DeckDisplay" to="." method="_on_deck_display_card_pressed"]
+[connection signal="card_pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/InventoryDisplay" to="." method="_on_inventory_display_card_pressed"]
+[connection signal="card_pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/UntamedCardDisplay" to="." method="_on_untamed_card_display_card_pressed"]
+[connection signal="card_pressed" from="VBoxContainer/HBoxContainer/VBoxContainer2/DeckDisplay" to="." method="_on_deck_display_card_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/MarginContainer/HBoxContainer2/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/MarginContainer/HBoxContainer2/CloseButton" to="." method="_on_close_button_pressed"]

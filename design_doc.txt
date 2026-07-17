@@ -1,3 +1,7 @@
+untamed cards will use the same card index except with a negative card id. Globals
+will interperet negative values as positive when returning a card. Hmmm, but
+the card data 
+
 change star round to not draw cards if this round is game's starting round
 
 

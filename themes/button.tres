@@ -11,7 +11,13 @@ atlas = SubResource("CompressedTexture2D_ekwdc")
 region = Rect2(0, 22, 10, 4)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gkb8j"]
+content_margin_left = 16.0
+content_margin_right = 16.0
 texture = SubResource("AtlasTexture_u5ipa")
+texture_margin_left = 8.0
+texture_margin_top = 4.0
+texture_margin_right = 8.0
+texture_margin_bottom = 4.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dpjbf"]
 atlas = ExtResource("1_dpjbf")

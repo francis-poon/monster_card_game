@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://sfwobllexd7y"]
+
+[ext_resource type="Script" uid="uid://16kc26imqr0r" path="res://dev_tools/dt_cost_modifier_edit_line.gd" id="1_qfg6x"]
+[ext_resource type="Theme" uid="uid://d152fmdo8pu7m" path="res://themes/description_label.tres" id="2_mtifb"]
+[ext_resource type="Theme" uid="uid://cw5tc68q7kjfq" path="res://themes/button.tres" id="3_3nvtb"]
+
+[node name="DtCostModifierEditLine" type="Control" unique_id=293677866 node_paths=PackedStringArray("card_description_label", "cost_modifier_spin_box")]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qfg6x")
+card_description_label = NodePath("MarginContainer/HBoxContainer/CardDescriptionLabel")
+cost_modifier_spin_box = NodePath("MarginContainer/HBoxContainer/CostModifierSpinBox")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1337553770]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.99607843, 0.8392157, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=660919832]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1316014741]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="CostModifierSpinBox" type="SpinBox" parent="MarginContainer/HBoxContainer" unique_id=1307591064]
+layout_mode = 2
+min_value = -100.0
+
+[node name="CardDescriptionLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=969850433]
+layout_mode = 2
+theme = ExtResource("2_mtifb")
+text = "Card Description"
+
+[node name="RemoveButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1475396561]
+layout_mode = 2
+theme = ExtResource("3_3nvtb")
+text = "REMOVE"
+
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/CostModifierSpinBox" to="." method="_on_cost_modifier_spin_box_value_changed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/RemoveButton" to="." method="_on_remove_button_pressed"]
