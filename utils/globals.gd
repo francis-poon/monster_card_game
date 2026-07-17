@@ -32,6 +32,12 @@ func get_save_dir_root() -> String:
 	else:
 		return "user://saves/"
 
+func init_save_dir():
+	if not DirAccess.dir_exists_absolute(get_save_dir_root()):
+		DirAccess.make_dir_absolute(get_save_dir_root())
+	if not DirAccess.dir_exists_absolute(tamed_monster_index_dir):
+		DirAccess.make_dir_absolute(tamed_monster_index_dir)
+
 func _init_card_index() -> Dictionary:
 	var index_data: DeckData = ResourceLoader.load("res://resources/card_index_data.tres")
 	var p_card_index: Dictionary = {}
@@ -110,7 +116,10 @@ func create_tamed_id() -> String:
 	return new_id
 
 func load_player_party() -> PlayerPartyData:
-	var data: PlayerPartyData = ResourceLoader.load(get_save_dir_root() + "player_party.tres")
+	var data_path: String = get_save_dir_root() + "player_party.tres"
+	var data: PlayerPartyData = PlayerPartyData.new()
+	if ResourceLoader.exists(data_path):
+		data = ResourceLoader.load(data_path)
 	var invalid_uids: Array = []
 	for uid in data.party_uids:
 		if not tamed_monster_index.keys().has(uid):
@@ -123,12 +132,20 @@ func update_player_party(p_player_party: PlayerPartyData):
 	player_party = p_player_party
 	save_player_party()
 
+func load_starter():
+	var starter_path: String = "res://resources/starter_monster/starter_monster.tres"
+	var starter_monster: TamedMonsterData = ResourceLoader.load(starter_path)
+	add_tamed_monster(starter_monster)
+	save_tamed_monster(starter_monster)
+
 func save_tamed_monster(tamed_monster_data: TamedMonsterData):
 	var file_name: String = tamed_monster_data.uid + ".tres"
 	ResourceSaver.save(tamed_monster_data, tamed_monster_index_dir + file_name)
 
 func load_inventory() -> DeckData:
-	return ResourceLoader.load(inventory_path)
+	if ResourceLoader.exists(inventory_path):
+		return ResourceLoader.load(inventory_path)
+	return DeckData.new()
 
 func save_inventory(inventory: DeckData):
 	ResourceSaver.save(inventory, inventory_path)
