@@ -33,11 +33,12 @@ var armor: int:
 		armor_value_label.text = str(value)
 var deck: PlayableDeck = PlayableDeck.new()
 var draw_size: int
-
+var is_first_turn: bool
 
 func start_game(p_monster_data: MonsterData):
 	deck = PlayableDeck.new(p_monster_data.deck)
 	deck.shuffle()
+	is_first_turn = true
 	max_health = p_monster_data.max_health
 	health = max_health
 	shield = 0
@@ -55,7 +56,9 @@ func end_game():
 
 func start_turn():
 	shield = 0
-	draw_cards(draw_size)
+	if not is_first_turn:
+		draw_cards(draw_size)
+	is_first_turn = false
 
 func end_turn():
 	ended_turn.emit()

@@ -5,17 +5,21 @@
 
 [sub_resource type="Resource" id="Resource_basn1"]
 script = ExtResource("1_k22pm")
-cards = [2, 2, 3, 4, 0, 0, 0, 0, 1, 1]
+cards = [3, 3, 4, 5, 1, 1, 1, 1, 2, 2]
 metadata/_custom_type_script = "uid://dle6e8t0bdmep"
 
 [resource]
 script = ExtResource("2_basn1")
-drop_table = [0, 0, 1]
+drop_table = [3, 3, 10]
 monster_id = 2
 deck = SubResource("Resource_basn1")
 name = "Trock"
 deck_size = 10
 starting_hand_size = 3
-draw_size = 2
-max_health = 5
+draw_size = 1
+max_health = 6
+deck_cost_capacity = 14
+card_cost_modifiers = {
+10: -1
+}
 metadata/_custom_type_script = "uid://cpcwevfmu370g"

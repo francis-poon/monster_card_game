@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://cgk12mgor4qek"]
+
+[ext_resource type="Script" uid="uid://b2rppfdo5kd41" path="res://dev_tools/dt_index_monster_display.gd" id="1_l3xna"]
+[ext_resource type="Texture2D" uid="uid://gcxew3v281ir" path="res://assets/monster_sprites/000_base.png" id="2_xd42y"]
+[ext_resource type="Texture2D" uid="uid://ux1kjvm8ceox" path="res://assets/monster_sprites/000_color_mask.png" id="3_3hami"]
+[ext_resource type="Theme" uid="uid://d152fmdo8pu7m" path="res://themes/description_label.tres" id="4_3hami"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_br8l7"]
+
+[node name="DtIndexMonsterDisplay" type="Control" unique_id=1633109492 node_paths=PackedStringArray("card_button", "monster_sprite_base", "monster_sprite_color_mask", "type_label")]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l3xna")
+card_button = NodePath("DisplayButton")
+monster_sprite_base = NodePath("DisplayButton/HBoxContainer/MonsterSpriteBaseTextureRect")
+monster_sprite_color_mask = NodePath("DisplayButton/HBoxContainer/MonsterSpriteBaseTextureRect/MonsterSpriteColorMaskTextureRect")
+type_label = NodePath("DisplayButton/HBoxContainer/TypeLabel")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1197932370]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.99607843, 0.8392157, 1)
+
+[node name="DisplayButton" type="Button" parent="." unique_id=803367375]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_br8l7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DisplayButton" unique_id=1920940109]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MonsterSpriteBaseTextureRect" type="TextureRect" parent="DisplayButton/HBoxContainer" unique_id=1431687226]
+layout_mode = 2
+texture = ExtResource("2_xd42y")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MonsterSpriteColorMaskTextureRect" type="TextureRect" parent="DisplayButton/HBoxContainer/MonsterSpriteBaseTextureRect" unique_id=235549312]
+modulate = Color(0.11764706, 0.49411765, 0.42352942, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_3hami")
+stretch_mode = 5
+
+[node name="TypeLabel" type="Label" parent="DisplayButton/HBoxContainer" unique_id=546143362]
+layout_mode = 2
+size_flags_horizontal = 2
+theme = ExtResource("4_3hami")
+text = "Type"
+
+[connection signal="pressed" from="DisplayButton" to="." method="_on_display_button_pressed"]

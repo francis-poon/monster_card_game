@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://dtqb24dm5fdjx"]
+
+[ext_resource type="Script" uid="uid://d14ou5leytak7" path="res://dev_tools/dt_cost_modifier_editor.gd" id="1_626st"]
+[ext_resource type="PackedScene" uid="uid://pta84vb7ohes" path="res://deck_editing/deck_display.tscn" id="2_40lh7"]
+[ext_resource type="PackedScene" uid="uid://bpnbpejlvmf8b" path="res://dev_tools/dt_cost_modifier_display.tscn" id="3_40lh7"]
+[ext_resource type="Theme" uid="uid://cw5tc68q7kjfq" path="res://themes/button.tres" id="4_xlvta"]
+
+[node name="DtCostModifierEditor" type="Control" unique_id=1971058256 node_paths=PackedStringArray("card_index_display", "cost_modifier_display")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_626st")
+card_index_display = NodePath("VBoxContainer/HBoxContainer/CardIndexDisplay")
+cost_modifier_display = NodePath("VBoxContainer/HBoxContainer/CostModifierDisplay")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=997963314]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=500077818]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="CardIndexDisplay" parent="VBoxContainer/HBoxContainer" unique_id=1787536738 instance=ExtResource("2_40lh7")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CostModifierDisplay" parent="VBoxContainer/HBoxContainer" unique_id=2038292317 instance=ExtResource("3_40lh7")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer" unique_id=1885787568]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+color = Color(1, 0.99607843, 0.8392157, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ColorRect" unique_id=268856517]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ColorRect/MarginContainer" unique_id=474504329]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="SaveButton" type="Button" parent="VBoxContainer/ColorRect/MarginContainer/HBoxContainer" unique_id=1186343776]
+layout_mode = 2
+theme = ExtResource("4_xlvta")
+text = "SAVE"
+
+[node name="CloseButton" type="Button" parent="VBoxContainer/ColorRect/MarginContainer/HBoxContainer" unique_id=820845408]
+layout_mode = 2
+theme = ExtResource("4_xlvta")
+text = "CLOSE"
+
+[connection signal="card_pressed" from="VBoxContainer/HBoxContainer/CardIndexDisplay" to="." method="_on_card_index_display_card_pressed"]
+[connection signal="cost_changed" from="VBoxContainer/HBoxContainer/CostModifierDisplay" to="." method="_on_cost_modifier_display_cost_changed"]
+[connection signal="pressed" from="VBoxContainer/ColorRect/MarginContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ColorRect/MarginContainer/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]

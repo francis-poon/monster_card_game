@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://db0hepyv4vh8c" path="res://deck_editing/monster_display_card_container.gd" id="6_bgo75"]
 [ext_resource type="Theme" uid="uid://csly7nq8n54pg" path="res://themes/header_label.tres" id="6_gmrpb"]
 
-[node name="TamedMonsterSelector" type="Control" unique_id=530506606 node_paths=PackedStringArray("monster_display_card_container", "monster_name_label", "monster_type_label", "monster_stats_label", "deck_display")]
+[node name="TamedMonsterSelector" type="Control" unique_id=530506606 node_paths=PackedStringArray("monster_display_card_container", "monster_name_label", "monster_type_label", "monster_stats_label", "monster_cost_modifier_label", "deck_display")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,9 +20,10 @@ grow_vertical = 2
 script = ExtResource("1_yd70l")
 tamed_monster_display_card_scene = ExtResource("2_1h4ar")
 monster_display_card_container = NodePath("HBoxContainer/MarginContainer/MarginContainer/MarginContainer/ScrollContainer/MonsterDisplayCardContainer")
-monster_name_label = NodePath("HBoxContainer/InfoBox/MarginContainer/VBoxContainer/MonsterNameLabel")
-monster_type_label = NodePath("HBoxContainer/InfoBox/MarginContainer/VBoxContainer/MonsterTypeLabel")
-monster_stats_label = NodePath("HBoxContainer/InfoBox/MarginContainer/VBoxContainer/MonsterStatsLabel")
+monster_name_label = NodePath("HBoxContainer/InfoBox/MarginContainer/ScrollContainer/VBoxContainer/MonsterNameLabel")
+monster_type_label = NodePath("HBoxContainer/InfoBox/MarginContainer/ScrollContainer/VBoxContainer/MonsterTypeLabel")
+monster_stats_label = NodePath("HBoxContainer/InfoBox/MarginContainer/ScrollContainer/VBoxContainer/MonsterStatsLabel")
+monster_cost_modifier_label = NodePath("HBoxContainer/InfoBox/MarginContainer/ScrollContainer/VBoxContainer/MonsterCostModifierLabel")
 deck_display = NodePath("HBoxContainer/MarginContainer2/VBoxContainer/DeckDisplay")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1472269831]
@@ -112,28 +113,42 @@ theme = ExtResource("3_bgo75")
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_right = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/InfoBox/MarginContainer" unique_id=1296094972]
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/InfoBox/MarginContainer" unique_id=1188774207]
 layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/InfoBox/MarginContainer/ScrollContainer" unique_id=1296094972]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 0
 
-[node name="MonsterNameLabel" type="Label" parent="HBoxContainer/InfoBox/MarginContainer/VBoxContainer" unique_id=1542329498]
+[node name="MonsterNameLabel" type="Label" parent="HBoxContainer/InfoBox/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1542329498]
 layout_mode = 2
 theme = ExtResource("6_gmrpb")
 text = "Name"
 
-[node name="MonsterTypeLabel" type="Label" parent="HBoxContainer/InfoBox/MarginContainer/VBoxContainer" unique_id=226485766]
+[node name="MonsterTypeLabel" type="Label" parent="HBoxContainer/InfoBox/MarginContainer/ScrollContainer/VBoxContainer" unique_id=226485766]
 layout_mode = 2
 theme = ExtResource("4_gro4v")
 text = "type"
 
-[node name="Padding" type="Control" parent="HBoxContainer/InfoBox/MarginContainer/VBoxContainer" unique_id=1099032925]
+[node name="Padding" type="Control" parent="HBoxContainer/InfoBox/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1099032925]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
-[node name="MonsterStatsLabel" type="Label" parent="HBoxContainer/InfoBox/MarginContainer/VBoxContainer" unique_id=629718352]
+[node name="MonsterStatsLabel" type="Label" parent="HBoxContainer/InfoBox/MarginContainer/ScrollContainer/VBoxContainer" unique_id=629718352]
 layout_mode = 2
 theme = ExtResource("4_gro4v")
 text = "Stats"
+
+[node name="Padding2" type="Control" parent="HBoxContainer/InfoBox/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1071586762]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="MonsterCostModifierLabel" type="Label" parent="HBoxContainer/InfoBox/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1790629551]
+layout_mode = 2
+theme = ExtResource("4_gro4v")
+text = "Cost Modifiers"
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer" unique_id=1582788029]
 layout_mode = 2
