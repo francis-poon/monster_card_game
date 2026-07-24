@@ -7,21 +7,27 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p4qmb"]
 
 [node name="PlayerCharacter" type="CharacterBody2D" unique_id=1899331257 node_paths=PackedStringArray("sprite_base", "sprite_color_mask")]
+y_sort_enabled = true
 collision_mask = 2
 script = ExtResource("1_2gpuf")
 sprite_base = NodePath("SpriteBase2D")
 sprite_color_mask = NodePath("SpriteColorMask2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=91498358]
+position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_p4qmb")
 
 [node name="SpriteBase2D" type="Sprite2D" parent="." unique_id=1152464490]
+y_sort_enabled = true
 texture = ExtResource("2_b5xsv")
+offset = Vector2(0, -12)
 flip_h = true
 
 [node name="SpriteColorMask2D" type="Sprite2D" parent="." unique_id=1049108551]
 modulate = Color(0.11764706, 0.49411765, 0.42352942, 1)
+y_sort_enabled = true
 texture = ExtResource("3_0f5q7")
+offset = Vector2(0, -12)
 flip_h = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=364059758]

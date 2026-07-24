@@ -7,10 +7,15 @@
 script = ExtResource("1_3rb1r")
 cards = [-1, -1, -1, -1, -1, -1, -2, -3, -4, -4]
 
+[sub_resource type="Resource" id="Resource_68k4o"]
+script = ExtResource("1_3rb1r")
+metadata/_custom_type_script = "uid://dle6e8t0bdmep"
+
 [resource]
 script = ExtResource("2_1a2f5")
 nickname = "John"
 uid = "1362863802"
+untamed_deck = SubResource("Resource_68k4o")
 monster_id = 0
 deck = SubResource("Resource_3rb1r")
 name = "Wiggly"
